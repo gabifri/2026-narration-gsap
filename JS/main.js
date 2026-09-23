@@ -3,7 +3,6 @@ gsap.registerPlugin(ScrollTrigger, Observer, ScrollToPlugin, Draggable, MotionPa
 const heroContent = document.querySelector(".hero-content");
 const slides = gsap.utils.toArray(".slide");
 
-// On calcule la distance exacte à parcourir (Largeur totale de la bande d'images - Largeur de l'écran)
 function getScrollAmount() {
     return -(heroContent.scrollWidth - window.innerWidth);
 }
