@@ -11,8 +11,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -52,19 +52,72 @@
     </section>
 
     <section class="casette" id="casette">
+        <div class="project-modal">
+            <h2 id="project-title">Titre</h2>
+            
+            <!-- L'iframe mise à jour avec les paramètres officiels de YouTube -->
+            <iframe id="project-video" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            
+            <p id="project-desc">Description...</p>
+            <button class="eject-btn">⏏ EJECT</button>
+        </div>
+
         <div class="library">
-            <img src="assets/Cassette/Hope - Cassette.png" alt="Hope Tape" id="hope-tape" class="tape">
-            <img src="assets/Cassette/2 Dreams 2 Nightmares - Cassette.png" alt="2 Dreams 2 Nightmare Tape" id="dreams-tape" class="tape">
-            <img src="assets/Cassette/Contre Soirée - Cassette.png" alt="Contre Soirée Tape" id="contre-tape" class="tape">
-            <img src="assets/Cassette/New Era - Cassette.png" alt="New Era Tape" id="new-era-tape" class="tape">
-            <img src="assets/Cassette/Rencontre Accidentelle - Cassette.png" alt="Rencontre Accidentelle Tape" id="accidentelle-tape" class="tape">
-            <img src="assets/Cassette/On Papote - Cassette.png" alt="On Papote! Tape" id="papote-tape" class="tape">
-            <img src="assets/Cassette/aeMotion - Cassette.png" alt="aeMotion Tape" id="aemotion-tape" class="tape">
-            <img src="assets/Cassette/Bienvenue Chez IBM - Cassette.png" alt="Bienvenue Chez IBM Tape" id="ibm-tape" class="tape">
-            <img src="assets/Cassette/CJRMR - EP1 - Cassette.png" alt="CJRMR - EP1 Tape" id="cjrmr1-tape" class="tape">
-            <img src="assets/Cassette/CJRMR - EP2 - Cassette.png" alt="CJRMR - EP2 Tape" id="cjrmr2-tape" class="tape">
-            <img src="assets/Cassette/Vivatech 2k25 - Cassette.png" alt="Vivatech 2k25 Tape" id="vivatech-2k25-tape" class="tape">
-            <img src="assets/Cassette/Vivatech 2k26 - Cassette.png" alt="Vivatech 2k26 Tape" id="vivatech-2k26-tape" class="tape">
+            <img src="assets/Cassette/Hope - Cassette.png" alt="Hope Tape" id="hope-tape" class="tape"
+                data-title="Hope" 
+                data-yt="https://www.youtube.com/embed/DKXTkTZUjUE?si=xpSwnwaVDl9pfSQF" 
+                data-desc="L'histoire d'une rencontre inattendue qui change la vie de deux personnes.">
+            <img src="assets/Cassette/2 Dreams 2 Nightmares - Cassette.png" alt="2 Dreams 2 Nightmare Tape" id="dreams-tape" class="tape"
+                data-title="2 Dreams 2 Nightmares" 
+                data-yt="https://www.youtube.com/embed/HdoO8Qn9OaM?si=Kd8chBxXvnClMX_x" 
+                data-desc="Un voyage à travers les rêves et les cauchemars - Co Produit avec l'ESD Paris.">
+            <img src="assets/Cassette/Contre Soirée - Cassette.png" alt="Contre Soirée Tape" id="contre-tape" class="tape"
+                data-title="Contre Soirée" 
+                data-yt="" 
+                data-desc="">
+            <img src="assets/Cassette/New Era - Cassette.png" alt="New Era Tape" id="new-era-tape" class="tape"
+                data-title="New Era" 
+                data-yt="https://www.youtube.com/embed/l7EB-Ch83OU?si=Ats6gyahB_yUfvPH" 
+                data-desc="Le début d'une nouvelle ère.">
+            <img src="assets/Cassette/Rencontre Accidentelle - Cassette.png" alt="Rencontre Accidentelle Tape" id="accidentelle-tape" class="tape"
+                data-title="Rencontre Accidentelle" 
+                data-yt="https://youtu.be/he9H_67CkR8?si=kZ2RcNHqN11NnKYa" 
+                data-desc="">
+            <img src="assets/Cassette/On Papote - Cassette.png" alt="On Papote! Tape" id="papote-tape" class="tape"
+                data-title="On Papote!" 
+                data-yt="https://www.youtube.com/embed/EMV662yssE8?si=P9aTnX0Z1pvTVKTr" 
+                data-desc="">
+            <img src="assets/Cassette/aeMotion - Cassette.png" alt="aeMotion Tape" id="aemotion-tape" class="tape"
+                data-title="aeMotion - Le Future de la Mobilité Urbaine" 
+                data-yt="https://www.youtube.com/embed/Q3GywqVfiEg?si=83jR-Y4IVZixP6Jt" 
+                data-desc="">
+            <img src="assets/Cassette/Bienvenue Chez IBM - Cassette.png" alt="Bienvenue Chez IBM Tape" id="ibm-tape" class="tape"
+                data-title="Bienvenue Chez IBM" 
+                data-yt="https://www.youtube.com/embed/M4zFe8xMH1Y?si=hXg9ZSl0lazGcNuQ" 
+                data-desc="">
+            <img src="assets/Cassette/CJRMR - EP1 - Cassette.png" alt="CJRMR - EP1 Tape" id="cjrmr1-tape" class="tape"
+                data-title="CJRMR - EP1" 
+                data-yt="https://www.youtube.com/embed/awoq8JWrzfI?si=CU8VwDWd8lED7fFg" 
+                data-desc="">
+            <img src="assets/Cassette/CJRMR - EP2 - Cassette.png" alt="CJRMR - EP2 Tape" id="cjrmr2-tape" class="tape"
+                data-title="CJRMR - EP2" 
+                data-yt="https://www.youtube.com/embed/yfOpPnP-sPk?si=9pJS7nDIISkP4PS1" 
+                data-desc="">
+            <img src="assets/Cassette/Vivatech 2k25 - Cassette.png" alt="Vivatech 2k25 Tape" id="vivatech-2k25-tape" class="tape"
+                data-title="Vivatech 2k25" 
+                data-yt="https://www.youtube.com/embed/a51C2KgYWbk?si=Plr25RIcKE0_8dRJ" 
+                data-desc="">
+            <img src="assets/Cassette/Vivatech 2k26 - Cassette.png" alt="Vivatech 2k26 Tape" id="vivatech-2k26-tape" class="tape"
+                data-title="Vivatech 2k26" 
+                data-yt="https://www.youtube.com/embed/e5WxpjDRiaM?si=3cft7G5Fyh9RvlS8" 
+                data-desc="">
+        </div>
+
+        <!-- CÔTÉ DROIT : Le lecteur (Zone de dépôt) -->
+        <div class="player-zone">
+            <div class="lecteur">
+                <p>Insérer la cassette ici</p>
+            </div>
         </div>
     </section>
     
