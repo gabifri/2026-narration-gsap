@@ -43,25 +43,61 @@ header{
     width: 400px;
 }
 
-.hero{
+.hero-image {
+    width: 100vw;
+    height: 100vh;
+    flex-shrink: 0;
+    object-fit: contain;
+    padding: 100px 20px 20px 20px; /* J'ai augmenté le padding en haut (100px) pour que ton header ne cache pas le haut de l'affiche */
+    box-sizing: border-box;
+}
+
+.hero {
+    overflow: hidden;
+    height: 100vh;
+    width: 100%;
+    background-color: #000;
+}
+
+.hero-content {
     display: flex;
-    justify-content: center;
-    align-items: start;
+    width: max-content;
+    height: 100%;
+}
+
+/* La boîte qui contient un film */
+.slide {
+    width: 100vw;
+    height: 100vh;
+    position: relative; /* Permet de contenir l'image de fond absolue */
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+/* L'image de fond floue */
+.slide-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Remplit tout l'écran */
+    filter: blur(40px) brightness(0.6); /* Floute fortement et assombrit pour faire ressortir l'affiche */
+    transform: scale(1.1); /* Zoome pour cacher les bords imparfaits du flou */
     z-index: 1;
-    margin-bottom: 0px;
 }
 
-.hero-content{
-    margin-bottom: -4px;
-    display: flex;
-    flex-direction: row;
-}
-
-.hero-image{
-    justify-content: center;
-    align-items: top;
-    max-width: 100%;
-    max-height: 100%;
+/* L'affiche nette au premier plan */
+.slide-img {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Garde les proportions sans couper */
+    z-index: 2;
+    padding: 100px 20px 20px 20px; /* Laisse de la place pour ton header */
+    box-sizing: border-box;
+    /* Optionnel : ajoute une petite ombre sous l'affiche pour détacher encore plus l'image du fond */
+    filter: drop-shadow(0px 10px 30px rgba(0, 0, 0, 0.5)); 
 }
 
 .tagline{
