@@ -1,28 +1,46 @@
+.afacad-flux-<uniquifier> {
+  font-family: "Afacad Flux", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+  font-variation-settings:
+    "slnt" 0;
+}
+
+.inter-<uniquifier> {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+}
+
+
 body{
     margin: 0;
     background-color: #ff0000;
     align-items: start;
     z-index: 1;
+    font-family: 'Inter', sans-serif;
 }
 
 header{
     background: rgba(255, 255, 255, 0.1);
     padding: 10px;
     margin : 20px;
-    border-radius: 20px;
+    border-radius: 50px;
     display: flex;
     justify-content: center;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.3);
     z-index: 99999;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
 }
 
 .logo{
-    width: 200px;
+    width: 400px;
 }
 
 .hero{
@@ -30,6 +48,11 @@ header{
     justify-content: center;
     align-items: start;
     z-index: 1;
+    margin-bottom: 0px;
+}
+
+.hero-content{
+    margin-bottom: -4px;
 }
 
 .hero-image{
@@ -37,4 +60,22 @@ header{
     align-items: top;
     max-width: 100%;
     max-height: 100%;
+}
+
+.tagline{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    margin-top: 20px;
+    font-family: 'Afacad Flux', sans-serif;
+    font-size: 6rem;
+    color: #ffffff;
+    background: #000000;
+    margin: 0px;
+    padding: -10px;
+}
+
+.point-rouge{
+    color: #ff0000;
 }
