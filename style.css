@@ -53,6 +53,8 @@ header{
 
 .hero-content{
     margin-bottom: -4px;
+    display: flex;
+    flex-direction: row;
 }
 
 .hero-image{
