@@ -3,6 +3,7 @@ gsap.registerPlugin(ScrollTrigger, Observer, ScrollToPlugin, Draggable, MotionPa
 
 /* ==========================================================
    0. SMOOTH SCROLL SUR LES LIENS D'ANCRAGE
+   Source : Gémini
    ========================================================== */
 // Sélectionne tous les liens internes commençant par #
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
