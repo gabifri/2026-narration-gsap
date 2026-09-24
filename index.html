@@ -51,7 +51,7 @@
         <h1 class="tagline">We Love Making Vidéos<span class="point-rouge">.</span></h1>
     </section>
 
-    <section class="casette" id="casette">
+    <section class="cassette" id="cassette">
         <div class="project-modal">
             <h2 id="project-title">Titre</h2>
             
@@ -59,7 +59,6 @@
             <iframe id="project-video" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             
             <p id="project-desc">Description...</p>
-            <button class="eject-btn">⏏ EJECT</button>
         </div>
 
         <div class="library">
@@ -116,8 +115,9 @@
         <!-- CÔTÉ DROIT : Le lecteur (Zone de dépôt) -->
         <div class="player-zone">
             <div class="lecteur">
-                <p>Insérer la cassette ici</p>
+                <p class="lecteur-text">Insérer la cassette ici</p>
             </div>
+            <button class="eject-btn" onclick="ejectFunction()">⏏ EJECT</button>
         </div>
     </section>
     
