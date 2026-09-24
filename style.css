@@ -117,9 +117,6 @@ header {
     color: var(--c-primary);
 }
 
-/* =========================================
-   SECTION 3 : INTERACTION VHS (DRAG & DROP)
-   ========================================= */
 #cassette {
     display: flex;
     height: 100vh;
@@ -137,9 +134,10 @@ header {
     flex-wrap: wrap;
     gap: 20px;
     border-right: 2px dashed #444;
-    overflow: visible; /* Empêche l'invisibilité des cassettes pendant le drag */
+    overflow: visible; 
     position: relative;
     z-index: 999;
+    box-sizing: border-box; /* Indispensable */
 }
 
 .tape {
@@ -163,8 +161,9 @@ header {
     align-items: center;
     gap: 20px; 
     position: relative; 
-    overflow: hidden; /* Contient l'affiche floutée */
+    overflow: hidden; 
     z-index: 1;
+    box-sizing: border-box; /* Indispensable */
 }
 
 /* L'affiche dynamique qui s'affiche en fond du lecteur (Gérée par JS) */
@@ -219,9 +218,11 @@ header {
     position: absolute;
     top: 0; 
     left: 0; 
-    width: 50%; 
+    width: calc(50% - 2px); /* Retire exactement l'épaisseur des pointillés */
     height: 100%;
-    background: rgba(0, 0, 0, 0.95); /* Assombrit fortement les cassettes en dessous */
+    margin: 0;
+    border-radius: 0;
+    background: rgba(0, 0, 0, 0.95); /* (Ou yellow pour tes tests) */
     padding: 40px;
     box-sizing: border-box;
     display: flex; 
@@ -231,7 +232,7 @@ header {
     text-align: center;
     pointer-events: none;
     opacity: 0;
-    z-index: 2000 !important; /* Force le passage au-dessus des cassettes */
+    z-index: 2000 !important; 
 }
 
 /* Iframe YouTube */

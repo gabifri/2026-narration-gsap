@@ -31,22 +31,24 @@ Draggable.create(".tape", {
     bounds: "#cassette",
     
     onDragStart: function() {
-        // Déclenche l'animation de respiration CSS
         document.querySelector(".lecteur").classList.add("is-glowing");
     },
 
     onDragEnd: function() {
+        
+        document.querySelector(".lecteur").classList.remove("is-glowing");
+
         if (this.hitTest(".lecteur")) {
             currentCassette = this.target;
 
-            // Calcul géométrique pour le centrage parfait
+            // Calcul géométrique pour le centrage
             const lecteurRect = document.querySelector(".lecteur").getBoundingClientRect();
             const tapeRect = this.target.getBoundingClientRect();
             
             const dx = (lecteurRect.left + lecteurRect.width / 2) - (tapeRect.left + tapeRect.width / 2);
             const dy = (lecteurRect.top + lecteurRect.height / 2) - (tapeRect.top + tapeRect.height / 2);
 
-            // Aimantation au centre avec scale à 1
+            // Aimantation au centre
             gsap.to(this.target, { 
                 x: gsap.getProperty(this.target, "x") + dx, 
                 y: gsap.getProperty(this.target, "y") + dy, 
@@ -57,27 +59,56 @@ Draggable.create(".tape", {
 
             this.disable();
 
-            // Injection des données de la cassette
+            /* --- GESTION DES COULEURS & GLASSMORPHISM TEINTÉ --- */
+            let typeCassette = this.target.dataset.type;
+            let couleurBordure = "#ff0000"; 
+            let couleurFond = "rgba(255, 0, 0, 0.4)"; // Transparence à 0.4
+
+            // Conversion de tes couleurs HEX en RGBA(..., 0.4) pour le fond
+            if (typeCassette === "docu") {
+                couleurBordure = "#FFE44B";
+                couleurFond = "rgba(255, 228, 75, 0.4)";
+            } else if (typeCassette === "podcast") {
+                couleurBordure = "#F15CEF";
+                couleurFond = "rgba(241, 92, 239, 0.4)";
+            } else if (typeCassette === "vlog") {
+                couleurBordure = "#5C86F1";
+                couleurFond = "rgba(92, 134, 241, 0.4)";
+            } else if (typeCassette === "court-metrage") {
+                couleurBordure = "#48FF48";
+                couleurFond = "rgba(72, 255, 72, 0.4)";
+            }
+
+            // Animation de la bordure, du halo fixe et du fond teinté en mode glassmorphism
+            gsap.to(".lecteur", { 
+                borderColor: couleurBordure, 
+                boxShadow: `0 0 30px ${couleurBordure}`,
+                backgroundColor: couleurFond,
+                backdropFilter: "blur(20px)",
+                duration: 0.5 
+            });
+            /* --------------------------------------------------- */
+
+            // Remplissage des données
             document.getElementById("project-title").innerText = this.target.dataset.title || "Projet";
             document.getElementById("project-desc").innerText = this.target.dataset.desc || "";
             document.getElementById("project-video").src = this.target.dataset.yt || "";
 
-            // Affichage de l'affiche floutée en fond
+            // Apparition de l'affiche floutée en fond
             if (this.target.dataset.poster) {
                 const playerBg = document.querySelector(".player-bg");
                 playerBg.style.backgroundImage = `url('${this.target.dataset.poster}')`;
                 gsap.to(playerBg, { opacity: 1, duration: 0.5 });
             }
 
-            // Apparition de l'interface
+            // Apparition de l'interface complète
             gsap.to(".project-modal", { opacity: 1, y: 0, pointerEvents: "auto", duration: 0.5 });
             gsap.to(".eject-btn", { opacity: 1, pointerEvents: "auto", duration: 0.3 });
             gsap.to(".lecteur-text", { opacity: 0, duration: 0.3 });
 
         } else {
-            // Si on lâche à côté, retour à la case départ
+            // Si on lâche à côté : la cassette retourne à sa place
             gsap.to(this.target, { x: 0, y: 0, duration: 0.5, ease: "back.out" });
-            document.querySelector(".lecteur").classList.remove("is-glowing");
         }
     }
 });
@@ -85,7 +116,7 @@ Draggable.create(".tape", {
 /* --- 3. BOUTON EJECT --- */
 function ejectFunction() {
     
-    // Fermeture de l'interface et coupure de la vidéo
+    // Disparition de la modale et coupure de la vidéo
     gsap.to(".project-modal", { 
         opacity: 0, 
         y: 30, 
@@ -96,15 +127,30 @@ function ejectFunction() {
         }
     });
 
-    // Extinction de la lumière et remise à zéro visuelle
-    document.querySelector(".lecteur").classList.remove("is-glowing");
+    // Remise à zéro de l'interface droite
     gsap.to(".player-bg", { opacity: 0, duration: 0.5 });
     gsap.to(".lecteur-text", { opacity: 1, duration: 0.3 });
     gsap.to(".eject-btn", { opacity: 0, pointerEvents: "none", duration: 0.3 });
+    
+    // Le lecteur retrouve son état noir opaque avec le halo rouge d'origine
+    gsap.to(".lecteur", { 
+        borderColor: "#ff0000", 
+        boxShadow: "0 0 15px rgba(255, 0, 0, 0.4)",
+        backgroundColor: "#000000",
+        backdropFilter: "blur(0px)",
+        duration: 0.5 
+    });
 
-    // La cassette retourne dans la bibliothèque
+    // Retour de la cassette dans la bibliothèque
     if (currentCassette) {
-        gsap.to(currentCassette, { x: 0, y: 0, scale: 1, duration: 0.6, ease: "back.out" });
+        gsap.to(currentCassette, { 
+            x: 0, 
+            y: 0, 
+            scale: 1, 
+            duration: 0.6, 
+            ease: "back.out",
+            clearProps: "transform" 
+        });
         Draggable.get(currentCassette).enable();
         currentCassette = null; 
     }
