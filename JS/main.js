@@ -155,3 +155,37 @@ function ejectFunction() {
         currentCassette = null; 
     }
 }
+
+/* --- 4. SECTION MAKING-OFF (SLIDER AVANT/APRÈS) --- */
+
+// 1. Défilement infini du grand mur d'images
+gsap.to(".infinite-track", {
+    xPercent: -50, // Décale jusqu'à la moitié (fin de la série 1)
+    ease: "none",
+    duration: 45, // Plus le chiffre est grand, plus le défilement est lent
+    repeat: -1    // Boucle infinie
+});
+
+// 2. Configuration du curseur (Draggable)
+let overlayTrack = document.querySelector(".fg-overlay");
+
+// Placement du curseur au centre au chargement
+gsap.set(".slider-handle", { x: window.innerWidth / 2 });
+gsap.set(overlayTrack, { width: window.innerWidth / 2 });
+
+Draggable.create(".slider-handle", {
+    type: "x",
+    bounds: ".making-off", // Bloque le curseur dans l'écran
+    
+    // Met à jour la zone visible des affiches quand on glisse
+    onDrag: function() {
+        gsap.set(overlayTrack, { width: this.x });
+    }
+});
+
+// Recalcule le centre si l'utilisateur redimensionne sa fenêtre
+window.addEventListener("resize", () => {
+    let newWidth = window.innerWidth / 2;
+    gsap.set(".slider-handle", { x: newWidth });
+    gsap.set(overlayTrack, { width: newWidth });
+});

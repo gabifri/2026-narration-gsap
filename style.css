@@ -243,6 +243,122 @@ header {
 }
 
 /* =========================================
+   SECTION 4 : MAKING-OFF (Avant/Après)
+   ========================================= */
+.making-off {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    background-color: var(--c-bg-dark);
+    overflow: hidden; 
+    display: flex;
+    flex-direction: row;
+    /* Le display:flex a été retiré ici pour rendre le titre et le slider 100% indépendants */
+}
+
+.making-off-title {
+    top: 6vh; /* Le titre a sa propre zone en haut */
+    width: 100%;
+    text-align: center;
+    z-index: 10;
+    pointer-events: none; 
+}
+
+/* Le conteneur global du slider : cloué au sol ! */
+.track-slider {
+    position: absolute;
+    bottom: 0; /* Accroché en bas de la page */
+    left: 0;
+    width: 100%;
+    height: 82vh; /* Laisse exactement 18vh de marge en haut pour le titre */
+}
+
+/* Les deux pistes empilées */
+.track-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%; 
+    width: 100%;
+}
+
+/* La piste du dessus (Affiches) */
+.fg-overlay {
+    width: 50%; 
+    overflow: hidden; 
+    z-index: 2;
+    box-shadow: 5px 0 20px rgba(0, 0, 0, 0.8);
+}
+
+/* Structure infinie - gère le centrage vertical */
+.infinite-track {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centre les images au milieu des 82vh */
+    gap: 20px; 
+    width: max-content;
+    padding-left: 20px;
+    height: 100%; 
+}
+
+.track-row {
+    display: flex;
+    gap: 20px; 
+}
+
+/* Images et vidéos */
+.track-row img,
+.track-row video {
+    height: 36vh; /* 36vh + 36vh + le gap rentre parfaitement dans la zone des 82vh */
+    aspect-ratio: 2 / 3; 
+    object-fit: cover;
+    border-radius: 12px;
+    pointer-events: none;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5); 
+}
+
+/* --- LE CURSEUR INTERACTIF --- */
+.slider-handle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-left: -2px; 
+    height: 100%; /* Prend les 82vh du conteneur, s'arrête net avant le titre */
+    width: 4px;
+    background-color: var(--c-primary);
+    z-index: 3;
+    cursor: ew-resize;
+}
+
+/* Le bouton central */
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -25px; 
+    margin-left: -25px; 
+    width: 50px;
+    height: 50px;
+    background-color: var(--c-text); 
+    border: 3px solid var(--c-primary);
+    border-radius: 50%;
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    gap: -5px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); 
+    transition: transform 0.2s ease;
+}
+
+.slider-btn svg {
+    stroke: var(--c-bg-dark); 
+}
+
+.slider-handle:hover .slider-btn {
+    transform: scale(1.15); 
+}
+
+/* =========================================
    ANIMATIONS & ÉTATS DYNAMIQUES
    ========================================= */
 
