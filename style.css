@@ -1,18 +1,18 @@
 /* =========================================
-   1. VARIABLES GLOBALES (Design System)
+   1. VARIABLES & CONFIGURATION
    ========================================= */
 :root {
-    --c-primary: #ff0000;       
-    --c-bg-dark: #000000;       
-    --c-bg-panel: #111111;      
-    --c-text: #ffffff;          
+    --c-primary: #ff0000;
+    --c-bg-dark: #000000;
+    --c-bg-panel: #111111;
+    --c-text: #ffffff;
     
     --font-main: 'Inter', sans-serif;
     --font-title: 'Afacad Flux', sans-serif;
 }
 
 /* =========================================
-   2. CONFIGURATION DE BASE
+   2. TYPOGRAPHIE & BASE
    ========================================= */
 body {
     margin: 0;
@@ -23,7 +23,7 @@ body {
 }
 
 /* =========================================
-   3. HEADER (Logo + Menu de Navigation)
+   3. HEADER & NAVIGATION (Glassmorphism)
    ========================================= */
 header {
     background: rgba(255, 255, 255, 0.08);
@@ -74,7 +74,7 @@ header {
 }
 
 /* =========================================
-   SECTION 1 : HERO (Galerie Horizontale GSAP)
+   SECTION 1 : HERO (SCROLL HORIZONTAL)
    ========================================= */
 .hero {
     overflow: hidden;
@@ -91,7 +91,7 @@ header {
 }
 
 .slide {
-    width: 100vw; 
+    width: 100vw;
     height: 100vh;
     position: relative; 
     flex-shrink: 0;
@@ -122,7 +122,7 @@ header {
 }
 
 /* =========================================
-   SECTION 2 : TAGLINE (Typographie Fluide)
+   SECTION 2 : TAGLINE
    ========================================= */
 .tagline {
     display: flex;
@@ -148,7 +148,7 @@ header {
 }
 
 /* =========================================
-   SECTION 3 : LECTEUR VHS (Drag & Drop GSAP)
+   SECTION 3 : LECTEUR VHS & BIBLIOTHÈQUE
    ========================================= */
 #cassette {
     display: flex;
@@ -159,29 +159,36 @@ header {
     overflow: hidden;
 }
 
+/* Bibliothèque multi-colonnes avec débordement visible */
 .library {
     width: 50%;
-    padding: 50px;
+    padding: 80px 20px 50px 20px; 
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
+    align-content: flex-start;
     gap: 20px;
+    overflow: visible !important; 
     border-right: 2px dashed #444; 
-    overflow: visible; 
     position: relative;
-    z-index: 999;
+    z-index: 999; /* Z-index inférieur à la modale */
     box-sizing: border-box; 
 }
 
+/* Les cassettes s'empilent via un margin-top négatif */
 .tape {
-    height: 150px;
+    height: 130px;
     cursor: grab;
     position: relative;
-    z-index: 888;
-    transition: transform 0.2s ease;
+    z-index: 10;
+    margin-top: -50px; /* EMPILEMENT VERTICAL */
+    transition: transform 0.2s ease, z-index 0s;
 }
 
+/* Au survol ou pendant le drag, la cassette passe tout au-dessus */
 .tape:hover {
-    transform: scale(1.05); 
+    transform: scale(1.1); 
+    z-index: 10000 !important; 
 }
 
 .player-zone {
@@ -193,7 +200,7 @@ header {
     gap: 20px; 
     position: relative; 
     overflow: hidden; 
-    z-index: 1;
+    z-index: 1; /* Indice Z inférieur à la bibliothèque */
     box-sizing: border-box; 
 }
 
@@ -256,7 +263,7 @@ header {
     justify-content: center; 
     pointer-events: none;
     opacity: 0; 
-    z-index: 2000 !important; 
+    z-index: 1000000; 
 }
 
 .project-modal iframe {
@@ -268,7 +275,7 @@ header {
 }
 
 /* =========================================
-   SECTION 4 : MAKING-OFF (Slider Avant/Après)
+   SECTION 4 : MAKING-OFF (Avant/Après)
    ========================================= */
 .making-off {
     position: relative;
@@ -457,7 +464,7 @@ header {
 }
 
 @media screen and (max-width: 1300px) {
-    .tape { height: 120px; }
+    .tape { height: 100px; margin-top: -30px; } 
     .project-modal iframe { max-width: 450px; }
     .header-nav { display: none; } 
 }
