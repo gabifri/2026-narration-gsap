@@ -228,8 +228,6 @@ header {
     display: flex; 
     flex-direction: column;
     justify-content: center; 
-    align-items: center; 
-    text-align: center;
     pointer-events: none;
     opacity: 0;
     z-index: 2000 !important; 
@@ -238,7 +236,6 @@ header {
 /* Iframe YouTube */
 .project-modal iframe {
     width: 100%;
-    max-width: 550px; /* Limite la taille pour conserver la netteté */
     aspect-ratio: 16 / 9; /* Maintient les proportions cinéma */
     margin: 20px 0;
     border-radius: 10px;
@@ -258,6 +255,18 @@ header {
 
 .lecteur.is-glowing {
     animation: smooth-pulse 2s infinite ease-in-out;
+}
+
+/* L'animation du voyant d'enregistrement (REC) */
+@keyframes rec-blink {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+.point-rouge {
+    color: var(--c-primary);
+    animation: rec-blink 1.5s infinite ease-in-out; /* Fait clignoter le point en douceur et en boucle */
 }
 
 /* =========================================
