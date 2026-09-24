@@ -1,91 +1,87 @@
-.afacad-flux-<uniquifier> {
-  font-family: "Afacad Flux", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: <weight>;
-  font-style: normal;
-  font-variation-settings:
-    "slnt" 0;
+/* =========================================
+   1. VARIABLES & CONFIGURATION
+   ========================================= */
+/* Catalogue de variables pour une modification rapide du thème global */
+:root {
+    --c-primary: #ff0000;
+    --c-bg-dark: #000000;
+    --c-bg-panel: #111111;
+    --c-text: #ffffff;
+    
+    --font-main: 'Inter', sans-serif;
+    --font-title: 'Afacad Flux', sans-serif;
 }
 
-.inter-<uniquifier> {
-  font-family: "Inter", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: <weight>;
-  font-style: normal;
-}
-
-
-body{
+/* =========================================
+   2. TYPOGRAPHIE & BASE
+   ========================================= */
+body {
     margin: 0;
-    background-color: #ff0000;
-    align-items: start;
-    z-index: 1;
-    font-family: 'Inter', sans-serif;
+    background-color: var(--c-bg-dark);
+    color: var(--c-text);
+    font-family: var(--font-main);
+    overflow-x: hidden; /* Empêche le scroll horizontal indésirable */
 }
 
-header{
+/* =========================================
+   3. HEADER & NAVIGATION (Glassmorphism)
+   ========================================= */
+header {
     background: rgba(255, 255, 255, 0.1);
     padding: 10px;
-    margin : 20px;
+    margin: 20px;
     border-radius: 50px;
     display: flex;
     justify-content: center;
     backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.3);
-    z-index: 99999;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
+    z-index: 99999;
 }
 
-.logo{
+.logo {
     width: 400px;
 }
 
-.hero-image {
-    width: 100vw;
-    height: 100vh;
-    flex-shrink: 0;
-    object-fit: contain;
-    padding: 100px 20px 20px 20px;
-    box-sizing: border-box;
-}
-
+/* =========================================
+   SECTION 1 : HERO (SCROLL HORIZONTAL)
+   ========================================= */
 .hero {
     overflow: hidden;
     height: 100vh;
     width: 100%;
-    background-color: #000;
-    margin-bottom: -2px;
+    background-color: var(--c-bg-dark);
+    margin-bottom: -2px; /* Corrige les éventuels micro-décalages de pixels */
 }
 
 .hero-content {
     display: flex;
     width: max-content;
     height: 100%;
-    margin-bottom: -2px;
 }
 
-/* La boîte qui contient un film */
+/* Conteneur principal d'une affiche */
 .slide {
     width: 100vw;
     height: 100vh;
-    position: relative; /* Permet de contenir l'image de fond absolue */
+    position: relative; 
     flex-shrink: 0;
     overflow: hidden;
 }
 
-/* L'image de fond floue */
+/* L'image de fond dynamique (Floutée) */
 .slide-bg {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Remplit tout l'écran */
-    filter: blur(40px) brightness(0.6); /* Floute fortement et assombrit pour faire ressortir l'affiche */
-    transform: scale(1.1); /* Zoome pour cacher les bords imparfaits du flou */
+    object-fit: cover; 
+    filter: blur(40px) brightness(0.6); 
+    transform: scale(1.1); /* Masque les bords transparents générés par le flou */
     z-index: 1;
 }
 
@@ -94,43 +90,46 @@ header{
     position: relative;
     width: 100%;
     height: 100%;
-    object-fit: contain; /* Garde les proportions sans couper */
-    z-index: 2;
-    padding: 100px 20px 20px 20px; /* Laisse de la place pour ton header */
+    object-fit: contain; 
+    padding: 100px 20px 20px 20px; 
     box-sizing: border-box;
-    /* Optionnel : ajoute une petite ombre sous l'affiche pour détacher encore plus l'image du fond */
     filter: drop-shadow(0px 10px 30px rgba(0, 0, 0, 0.5)); 
+    z-index: 2;
 }
 
-.tagline{
+/* =========================================
+   SECTION 2 : TAGLINE
+   ========================================= */
+.tagline {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1;
-    margin-top: 20px;
-    font-family: 'Afacad Flux', sans-serif;
+    margin: 0;
+    padding: 40px 0; /* Ajout d'espace pour laisser respirer le texte */
+    font-family: var(--font-title);
     font-size: 6rem;
-    color: #ffffff;
-    background: #000000;
-    margin: 0px;
-    padding: -10px;
+    color: var(--c-text);
+    background: var(--c-bg-dark);
+    z-index: 1;
 }
 
-.point-rouge{
-    color: #ff0000;
+.point-rouge {
+    color: var(--c-primary);
 }
 
-/* SECTION VHS & LECTEUR */
+/* =========================================
+   SECTION 3 : INTERACTION VHS (DRAG & DROP)
+   ========================================= */
 #cassette {
     display: flex;
     height: 100vh;
     width: 100%;
-    background-color: #111;
-    color: white;
+    background-color: var(--c-bg-panel);
     position: relative;
     overflow: hidden;
 }
 
+/* --- MOITIÉ GAUCHE : Bibliothèque --- */
 .library {
     width: 50%;
     padding: 50px;
@@ -138,24 +137,24 @@ header{
     flex-wrap: wrap;
     gap: 20px;
     border-right: 2px dashed #444;
+    overflow: visible; /* Empêche l'invisibilité des cassettes pendant le drag */
     position: relative;
-    overflow: visible; /* On maintient la guillotine ouverte */
-    position: relative;
-    z-index: 999
+    z-index: 999;
 }
 
 .tape {
     height: 150px;
     cursor: grab;
-    z-index: 888;
     position: relative;
+    z-index: 888;
     transition: transform 0.2s ease;
 }
 
 .tape:hover {
-    transform: scale(1.05);
+    transform: scale(1.05); /* Retour visuel (micro-interaction) au survol */
 }
 
+/* --- MOITIÉ DROITE : Zone de Lecture --- */
 .player-zone {
     width: 50%;
     display: flex;
@@ -164,10 +163,11 @@ header{
     align-items: center;
     gap: 20px; 
     position: relative; 
+    overflow: hidden; /* Contient l'affiche floutée */
     z-index: 1;
-    overflow: hidden;
 }
 
+/* L'affiche dynamique qui s'affiche en fond du lecteur (Gérée par JS) */
 .player-bg {
     position: absolute;
     top: 0;
@@ -176,72 +176,32 @@ header{
     height: 100%;
     background-size: cover;
     background-position: center;
-    filter: blur(40px) brightness(0.4); /* Flou puissant et assombri */
-    opacity: 0; /* Invisible par défaut */
-    z-index: 0; /* Reste tout au fond */
+    filter: blur(40px) brightness(0.4); 
+    transform: scale(1.2); 
     pointer-events: none;
-    transform: scale(1.2); /* Évite les bords transparents liés au flou */
+    opacity: 0; 
+    z-index: 0; 
 }
 
+/* Le boitier physique d'insertion de la cassette */
 .lecteur {
     width: 350px;
     height: 180px;
-    border: 3px solid #ff0000;
+    border: 3px solid var(--c-primary);
     border-radius: 10px;
-    background: #000;
+    background: var(--c-bg-dark);
     display: flex;
     justify-content: center;
     align-items: center;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.4); /* État de base au repos */
     position: relative; 
     z-index: 2;
-    box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
 }
 
-/* L'animation de respiration lumineuse (comme ton exemple) */
-@keyframes pulse-glow {
-    0% { box-shadow: 0 0 20px rgba(255, 0, 0, 0.4); }
-    50% { box-shadow: 0 0 70px rgba(255, 0, 0, 1); }
-    100% { box-shadow: 0 0 20px rgba(255, 0, 0, 0.4); }
-}
-
-.lecteur.is-glowing {
-    animation: pulse-glow 1.5s infinite ease-in-out;
-}
-
-/* MODALE PROJET */
-.project-modal {
-    position: absolute;
-    top: 0; 
-    left: 50%; /* Se place pile sur la player-zone (la moitié droite) */
-    width: 50%; /* Prend exactement la même largeur que la library */
-    height: 100%;
-    background: transparent; /* Laisse voir l'affiche floutée en fond */
-    z-index: 10;
-    padding: 40px;
-    box-sizing: border-box;
-    display: flex; 
-    flex-direction: column;
-    justify-content: flex-start; /* Pousse le contenu vers le haut pour laisser le lecteur en bas */
-    align-items: center; /* Centre le texte et la vidéo */
-    text-align: center;
-    opacity: 0;
-    pointer-events: none;
-}
-
-/* Un player vidéo aux proportions parfaites */
-.project-modal iframe {
-    width: 100%;
-    max-width: 550px; /* Ne prendra jamais plus de 550px de large */
-    aspect-ratio: 16 / 9; /* Force le ratio YouTube parfait */
-    margin: 20px 0;
-    border-radius: 10px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
-}
-
-/* Le bouton EJECT ramené au premier plan */
+/* Bouton d'éjection */
 .eject-btn {
-    background: #ff0000;
-    color: white;
+    background: var(--c-primary);
+    color: var(--c-text);
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
@@ -249,7 +209,69 @@ header{
     font-weight: bold;
     width: fit-content;
     position: relative;
-    z-index: 20; /* Plus haut que la project-modal pour rester cliquable */
-    opacity: 0;
+    z-index: 20; 
     pointer-events: none;
+    opacity: 0;
+}
+
+/* --- INTERFACE VIDÉO (Modale qui recouvre la bibliothèque) --- */
+.project-modal {
+    position: absolute;
+    top: 0; 
+    left: 0; 
+    width: 50%; 
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95); /* Assombrit fortement les cassettes en dessous */
+    padding: 40px;
+    box-sizing: border-box;
+    display: flex; 
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center; 
+    text-align: center;
+    pointer-events: none;
+    opacity: 0;
+    z-index: 2000 !important; /* Force le passage au-dessus des cassettes */
+}
+
+/* Iframe YouTube */
+.project-modal iframe {
+    width: 100%;
+    max-width: 550px; /* Limite la taille pour conserver la netteté */
+    aspect-ratio: 16 / 9; /* Maintient les proportions cinéma */
+    margin: 20px 0;
+    border-radius: 10px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+}
+
+/* =========================================
+   ANIMATIONS & ÉTATS DYNAMIQUES
+   ========================================= */
+
+/* Pulsation lumineuse du lecteur (Ajoutée par JS lors du Drag) */
+@keyframes smooth-pulse {
+    0% { box-shadow: 0 0 15px rgba(255, 0, 0, 0.4); }
+    50% { box-shadow: 0 0 50px rgba(255, 0, 0, 1), 0 0 80px rgba(255, 0, 0, 0.5); }
+    100% { box-shadow: 0 0 15px rgba(255, 0, 0, 0.4); }
+}
+
+.lecteur.is-glowing {
+    animation: smooth-pulse 2s infinite ease-in-out;
+}
+
+/* =========================================
+   RESPONSIVE (PC Portables & Écrans moyens)
+   ========================================= */
+@media screen and (max-width: 1300px) {
+    .tagline {
+        font-size: 4rem; /* Réduit la typo sur les plus petits PC */
+    }
+    
+    .tape {
+        height: 120px; /* Réduit la taille des cassettes pour éviter qu'elles ne s'entassent */
+    }
+
+    .project-modal iframe {
+        max-width: 450px;
+    }
 }
