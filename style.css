@@ -1,60 +1,87 @@
 /* =========================================
-   1. VARIABLES & CONFIGURATION
+   1. VARIABLES GLOBALES (Design System)
    ========================================= */
-/* Catalogue de variables pour une modification rapide du thème global */
 :root {
-    --c-primary: #ff0000;
-    --c-bg-dark: #000000;
-    --c-bg-panel: #111111;
-    --c-text: #ffffff;
+    --c-primary: #ff0000;       
+    --c-bg-dark: #000000;       
+    --c-bg-panel: #111111;      
+    --c-text: #ffffff;          
     
     --font-main: 'Inter', sans-serif;
     --font-title: 'Afacad Flux', sans-serif;
 }
 
 /* =========================================
-   2. TYPOGRAPHIE & BASE
+   2. CONFIGURATION DE BASE
    ========================================= */
 body {
     margin: 0;
     background-color: var(--c-bg-dark);
     color: var(--c-text);
     font-family: var(--font-main);
-    overflow-x: hidden; /* Empêche le scroll horizontal indésirable */
+    overflow-x: hidden; 
 }
 
 /* =========================================
-   3. HEADER & NAVIGATION (Glassmorphism)
+   3. HEADER (Logo + Menu de Navigation)
    ========================================= */
 header {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 10px;
-    margin: 20px;
+    background: rgba(255, 255, 255, 0.08);
+    padding: 12px 30px;
+    margin: 20px auto;
     border-radius: 50px;
-    display: flex;
-    justify-content: center;
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(20px); 
+    border: 1px solid rgba(255, 255, 255, 0.2);
     position: fixed;
     top: 0;
-    left: 0;
-    right: 0;
-    z-index: 99999;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 99999; 
+    width: min(90%, 1100px);
+    box-sizing: border-box;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
 }
 
 .logo {
-    width: 400px;
+    width: 180px; 
+    height: auto;
+}
+
+.header-nav {
+    display: flex;
+    gap: 30px;
+}
+
+.header-nav a {
+    color: var(--c-text);
+    text-decoration: none;
+    font-family: var(--font-title);
+    font-size: 1.1rem;
+    opacity: 0.8;
+    transition: opacity 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.header-nav a:hover {
+    opacity: 1;
+    color: var(--c-primary);
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
 }
 
 /* =========================================
-   SECTION 1 : HERO (SCROLL HORIZONTAL)
+   SECTION 1 : HERO (Galerie Horizontale GSAP)
    ========================================= */
 .hero {
     overflow: hidden;
     height: 100vh;
     width: 100%;
     background-color: var(--c-bg-dark);
-    margin-bottom: -2px; /* Corrige les éventuels micro-décalages de pixels */
+    margin-bottom: -2px; 
 }
 
 .hero-content {
@@ -63,16 +90,14 @@ header {
     height: 100%;
 }
 
-/* Conteneur principal d'une affiche */
 .slide {
-    width: 100vw;
+    width: 100vw; 
     height: 100vh;
     position: relative; 
     flex-shrink: 0;
     overflow: hidden;
 }
 
-/* L'image de fond dynamique (Floutée) */
 .slide-bg {
     position: absolute;
     top: 0;
@@ -81,11 +106,10 @@ header {
     height: 100%;
     object-fit: cover; 
     filter: blur(40px) brightness(0.6); 
-    transform: scale(1.1); /* Masque les bords transparents générés par le flou */
+    transform: scale(1.1); 
     z-index: 1;
 }
 
-/* L'affiche nette au premier plan */
 .slide-img {
     position: relative;
     width: 100%;
@@ -98,25 +122,34 @@ header {
 }
 
 /* =========================================
-   SECTION 2 : TAGLINE
+   SECTION 2 : TAGLINE (Typographie Fluide)
    ========================================= */
 .tagline {
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 0;
-    padding: 40px 0; /* Ajout d'espace pour laisser respirer le texte */
-    font-family: var(--font-title);
-    font-size: 6rem;
-    color: var(--c-text);
+    padding: 80px 20px; 
     background: var(--c-bg-dark);
     z-index: 1;
 }
 
-.point-rouge {
-    color: var(--c-primary);
+.tagline-text {
+    margin: 0;
+    font-family: var(--font-title);
+    font-size: clamp(2.5rem, 6vw, 6rem); 
+    color: var(--c-text);
+    text-align: center;
 }
 
+.point-rouge {
+    color: var(--c-primary);
+    animation: rec-blink 1.5s infinite ease-in-out;
+}
+
+/* =========================================
+   SECTION 3 : LECTEUR VHS (Drag & Drop GSAP)
+   ========================================= */
 #cassette {
     display: flex;
     height: 100vh;
@@ -126,18 +159,17 @@ header {
     overflow: hidden;
 }
 
-/* --- MOITIÉ GAUCHE : Bibliothèque --- */
 .library {
     width: 50%;
     padding: 50px;
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    border-right: 2px dashed #444;
+    border-right: 2px dashed #444; 
     overflow: visible; 
     position: relative;
     z-index: 999;
-    box-sizing: border-box; /* Indispensable */
+    box-sizing: border-box; 
 }
 
 .tape {
@@ -149,10 +181,9 @@ header {
 }
 
 .tape:hover {
-    transform: scale(1.05); /* Retour visuel (micro-interaction) au survol */
+    transform: scale(1.05); 
 }
 
-/* --- MOITIÉ DROITE : Zone de Lecture --- */
 .player-zone {
     width: 50%;
     display: flex;
@@ -163,10 +194,9 @@ header {
     position: relative; 
     overflow: hidden; 
     z-index: 1;
-    box-sizing: border-box; /* Indispensable */
+    box-sizing: border-box; 
 }
 
-/* L'affiche dynamique qui s'affiche en fond du lecteur (Gérée par JS) */
 .player-bg {
     position: absolute;
     top: 0;
@@ -182,7 +212,6 @@ header {
     z-index: 0; 
 }
 
-/* Le boitier physique d'insertion de la cassette */
 .lecteur {
     width: 350px;
     height: 180px;
@@ -192,12 +221,11 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 0 15px rgba(255, 0, 0, 0.4); /* État de base au repos */
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.4); 
     position: relative; 
     z-index: 2;
 }
 
-/* Bouton d'éjection */
 .eject-btn {
     background: var(--c-primary);
     color: var(--c-text);
@@ -213,37 +241,34 @@ header {
     opacity: 0;
 }
 
-/* --- INTERFACE VIDÉO (Modale qui recouvre la bibliothèque) --- */
 .project-modal {
     position: absolute;
     top: 0; 
     left: 0; 
-    width: calc(50% - 2px); /* Retire exactement l'épaisseur des pointillés */
+    width: calc(50% - 2px); 
     height: 100%;
     margin: 0;
-    border-radius: 0;
-    background: rgba(0, 0, 0, 0.95); /* (Ou yellow pour tes tests) */
+    background: rgba(0, 0, 0, 0.95);
     padding: 40px;
     box-sizing: border-box;
     display: flex; 
     flex-direction: column;
     justify-content: center; 
     pointer-events: none;
-    opacity: 0;
+    opacity: 0; 
     z-index: 2000 !important; 
 }
 
-/* Iframe YouTube */
 .project-modal iframe {
     width: 100%;
-    aspect-ratio: 16 / 9; /* Maintient les proportions cinéma */
+    aspect-ratio: 16 / 9; 
     margin: 20px 0;
     border-radius: 10px;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
 }
 
 /* =========================================
-   SECTION 4 : MAKING-OFF (Avant/Après)
+   SECTION 4 : MAKING-OFF (Slider Avant/Après)
    ========================================= */
 .making-off {
     position: relative;
@@ -251,29 +276,29 @@ header {
     width: 100%;
     background-color: var(--c-bg-dark);
     overflow: hidden; 
-    display: flex;
-    flex-direction: row;
-    /* Le display:flex a été retiré ici pour rendre le titre et le slider 100% indépendants */
 }
 
 .making-off-title {
-    top: 6vh; /* Le titre a sa propre zone en haut */
+    position: absolute;
+    top: 6vh; 
     width: 100%;
     text-align: center;
     z-index: 10;
     pointer-events: none; 
 }
 
-/* Le conteneur global du slider : cloué au sol ! */
-.track-slider {
-    position: absolute;
-    bottom: 0; /* Accroché en bas de la page */
-    left: 0;
-    width: 100%;
-    height: 82vh; /* Laisse exactement 18vh de marge en haut pour le titre */
+.making-off-title .tagline-text {
+    font-size: clamp(2rem, 4vw, 4rem); 
 }
 
-/* Les deux pistes empilées */
+.track-slider {
+    position: absolute;
+    bottom: 0; 
+    left: 0;
+    width: 100%;
+    height: 82vh; 
+}
+
 .track-container {
     position: absolute;
     top: 0;
@@ -282,7 +307,6 @@ header {
     width: 100%;
 }
 
-/* La piste du dessus (Affiches) */
 .fg-overlay {
     width: 50%; 
     overflow: hidden; 
@@ -290,13 +314,12 @@ header {
     box-shadow: 5px 0 20px rgba(0, 0, 0, 0.8);
 }
 
-/* Structure infinie - gère le centrage vertical */
 .infinite-track {
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Centre les images au milieu des 82vh */
+    justify-content: center; 
     gap: 20px; 
-    width: max-content;
+    width: max-content; 
     padding-left: 20px;
     height: 100%; 
 }
@@ -306,31 +329,28 @@ header {
     gap: 20px; 
 }
 
-/* Images et vidéos */
 .track-row img,
 .track-row video {
-    height: 36vh; /* 36vh + 36vh + le gap rentre parfaitement dans la zone des 82vh */
+    height: 36vh; 
     aspect-ratio: 2 / 3; 
     object-fit: cover;
     border-radius: 12px;
-    pointer-events: none;
+    pointer-events: none; 
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5); 
 }
 
-/* --- LE CURSEUR INTERACTIF --- */
 .slider-handle {
     position: absolute;
     top: 0;
     left: 0;
     margin-left: -2px; 
-    height: 100%; /* Prend les 82vh du conteneur, s'arrête net avant le titre */
+    height: 100%; 
     width: 4px;
     background-color: var(--c-primary);
     z-index: 3;
-    cursor: ew-resize;
+    cursor: ew-resize; 
 }
 
-/* Le bouton central */
 .slider-btn {
     position: absolute;
     top: 50%;
@@ -359,10 +379,67 @@ header {
 }
 
 /* =========================================
-   ANIMATIONS & ÉTATS DYNAMIQUES
+   FOOTER
    ========================================= */
+.site-footer {
+    background-color: var(--c-bg-panel); 
+    padding: 60px 20px 20px 20px;
+    border-top: 2px solid rgba(255, 0, 0, 0.3); 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+}
 
-/* Pulsation lumineuse du lecteur (Ajoutée par JS lors du Drag) */
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.footer-logo {
+    width: 250px; 
+    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.05));
+    transition: transform 0.3s ease;
+}
+
+.footer-logo:hover {
+    transform: scale(1.05);
+}
+
+.footer-links {
+    display: flex;
+    gap: 40px;
+}
+
+.footer-links a {
+    color: var(--c-text);
+    text-decoration: none;
+    font-family: var(--font-title);
+    font-size: 1.3rem;
+    opacity: 0.6;
+    transition: opacity 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.footer-links a:hover {
+    opacity: 1;
+    color: var(--c-primary);
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.5); 
+}
+
+.footer-bottom {
+    width: 100%;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 20px;
+    text-align: center;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+/* =========================================
+   ANIMATIONS & RESPONSIVE
+   ========================================= */
 @keyframes smooth-pulse {
     0% { box-shadow: 0 0 15px rgba(255, 0, 0, 0.4); }
     50% { box-shadow: 0 0 50px rgba(255, 0, 0, 1), 0 0 80px rgba(255, 0, 0, 0.5); }
@@ -373,31 +450,14 @@ header {
     animation: smooth-pulse 2s infinite ease-in-out;
 }
 
-/* L'animation du voyant d'enregistrement (REC) */
 @keyframes rec-blink {
     0% { opacity: 1; }
     50% { opacity: 0; }
     100% { opacity: 1; }
 }
 
-.point-rouge {
-    color: var(--c-primary);
-    animation: rec-blink 1.5s infinite ease-in-out; /* Fait clignoter le point en douceur et en boucle */
-}
-
-/* =========================================
-   RESPONSIVE (PC Portables & Écrans moyens)
-   ========================================= */
 @media screen and (max-width: 1300px) {
-    .tagline {
-        font-size: 4rem; /* Réduit la typo sur les plus petits PC */
-    }
-    
-    .tape {
-        height: 120px; /* Réduit la taille des cassettes pour éviter qu'elles ne s'entassent */
-    }
-
-    .project-modal iframe {
-        max-width: 450px;
-    }
+    .tape { height: 120px; }
+    .project-modal iframe { max-width: 450px; }
+    .header-nav { display: none; } 
 }
