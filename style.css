@@ -516,3 +516,70 @@ header {
     .track-row img, .track-row video { height: 20vh; }
     .slider-btn { width: 40px; height: 40px; margin-top: -20px; margin-left: -20px; }
 }
+
+/* =========================================
+   RESPONSIVE DESIGN (Mobiles)
+   ========================================= */
+@media screen and (max-width: 768px) {
+    /* Ajustements Header & Hero */
+    .logo { width: 140px; }
+    .header-container { justify-content: center; }
+    .slide-img { padding: 80px 20px 20px 20px; object-fit: contain; }
+    
+    /* Structure inversée : Lecteur en haut, Galerie en bas */
+    #cassette {
+        flex-direction: column-reverse; 
+        height: 100vh;
+    }
+
+    /* Le lecteur prend la moitié haute */
+    .player-zone {
+        width: 100%;
+        height: 45vh; 
+        border-bottom: 2px dashed #444;
+    }
+
+    .lecteur {
+        width: 85%;
+        height: 140px;
+    }
+
+    /* La bibliothèque devient une piste horizontale navigable au doigt */
+    .library {
+        width: 100%;
+        height: 55vh; 
+        padding: 20px 20px 20px 40px; /* Un peu d'espace à gauche pour commencer */
+        display: flex;
+        flex-direction: row; 
+        flex-wrap: nowrap; /* Force 1 seule ligne */
+        overflow-x: auto; /* Active le scroll horizontal */
+        overflow-y: hidden; 
+        align-items: center;
+        justify-content: flex-start;
+        border-right: none;
+        gap: 25px; /* Espace entre les cassettes */
+        -webkit-overflow-scrolling: touch; /* Scroll hyper fluide sur iOS */
+    }
+
+    /* Cassettes : Empêche l'écrasement avec flex: 0 0 auto */
+    .tape {
+        height: 110px;
+        margin: 0; 
+        flex: 0 0 auto; /* L'ASTUCE EST ICI : Interdit aux cassettes de s'écraser ou disparaître */
+        z-index: 10;
+        cursor: pointer;
+    }
+
+    /* Styles d'ajustement de la modale sur mobile */
+    .project-modal { 
+        padding: 20px; 
+        overflow-y: auto; 
+    }
+    .project-modal h2 { font-size: 1.5rem; margin-top: 0; }
+    .project-modal iframe { width: 100%; max-width: 100%; height: auto; aspect-ratio: 16/9; margin: 10px 0; }
+    .project-modal p { font-size: 0.9rem; margin-bottom: 0; }
+
+    /* Ajustement Making-off */
+    .track-row img, .track-row video { height: 20vh; }
+    .slider-btn { width: 40px; height: 40px; margin-top: -20px; margin-left: -20px; }
+}
