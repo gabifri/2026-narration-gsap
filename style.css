@@ -159,7 +159,6 @@ header {
     overflow: hidden;
 }
 
-/* Bibliothèque multi-colonnes avec débordement visible */
 .library {
     width: 50%;
     padding: 80px 20px 50px 20px; 
@@ -171,21 +170,19 @@ header {
     overflow: visible !important; 
     border-right: 2px dashed #444; 
     position: relative;
-    z-index: 999; /* Z-index inférieur à la modale */
+    z-index: 999;
     box-sizing: border-box; 
 }
 
-/* Les cassettes s'empilent via un margin-top négatif */
 .tape {
     height: 130px;
     cursor: grab;
     position: relative;
     z-index: 10;
-    margin-top: -50px; /* EMPILEMENT VERTICAL */
+    margin-top: -50px; 
     transition: transform 0.2s ease, z-index 0s;
 }
 
-/* Au survol ou pendant le drag, la cassette passe tout au-dessus */
 .tape:hover {
     transform: scale(1.1); 
     z-index: 10000 !important; 
@@ -200,7 +197,7 @@ header {
     gap: 20px; 
     position: relative; 
     overflow: hidden; 
-    z-index: 1; /* Indice Z inférieur à la bibliothèque */
+    z-index: 1; 
     box-sizing: border-box; 
 }
 
@@ -263,7 +260,7 @@ header {
     justify-content: center; 
     pointer-events: none;
     opacity: 0; 
-    z-index: 1000000; 
+    z-index: 2000 !important; 
 }
 
 .project-modal iframe {
@@ -467,4 +464,84 @@ header {
     .tape { height: 100px; margin-top: -30px; } 
     .project-modal iframe { max-width: 450px; }
     .header-nav { display: none; } 
+}
+
+/* --- VERSION MOBILE 100% OPTIMISÉE --- */
+@media screen and (max-width: 768px) {
+    /* Ajustements Header & Hero */
+    .logo { width: 140px; }
+    .header-container { justify-content: center; }
+    .slide-img { padding: 80px 20px 20px 20px; object-fit: contain; }
+    
+    /* Cassettes : Scroll Horizontal Infini + Lecteur Fixe */
+    #cassette {
+        display: flex;
+        flex-direction: column-reverse; /* Lecteur en haut, cassettes en bas */
+        height: 100vh;
+        overflow-x: auto; /* Active le scroll horizontal naturel */
+        overflow-y: hidden; /* Empêche le scroll vertical (couperait le Drag&Drop) */
+        -webkit-overflow-scrolling: touch; /* Scroll fluide iOS */
+    }
+
+    /* Le lecteur vidéo reste toujours visible en haut (sticky) */
+    .player-zone {
+        position: sticky;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 45vh; /* Occupe 45% du haut de l'écran */
+        flex-shrink: 0;
+        z-index: 10;
+        border-bottom: 2px dashed #444;
+        background-color: var(--c-bg-panel);
+    }
+
+    /* La bibliothèque devient une liste unique défilant de gauche à droite */
+    .library {
+        display: flex;
+        flex-direction: row; /* Liste horizontale */
+        flex-wrap: nowrap; /* Plus de multi-colonnes */
+        align-items: center;
+        width: max-content; /* S'adapte au nombre de cassettes */
+        height: 55vh; /* Occupe 55% du bas de l'écran */
+        flex-shrink: 0;
+        padding: 0 40px;
+        border-right: none;
+        gap: 25px; /* Bel espace entre chaque cassette */
+        overflow: visible !important; /* CRUCIAL : permet de glisser la cassette vers le lecteur en haut */
+    }
+
+    /* Cassettes géantes pour être facilement manipulables au doigt */
+    .tape {
+        height: 180px !important; 
+        margin-top: 0 !important; /* Retire l'empilement vertical du desktop */
+        margin-left: 0 !important;
+        flex-shrink: 0;
+    }
+
+    /* MODALE : Se limite à la moitié du bas pour laisser le bouton EJECT visible en haut */
+    .project-modal {
+        position: fixed !important;
+        top: 45vh !important; /* Démarre exactement sous le lecteur */
+        left: 0 !important;
+        width: 100vw !important;
+        height: 55vh !important; /* Recouvre seulement les cassettes */
+        padding: 20px !important;
+        z-index: 999999 !important; /* Au-dessus de tout le reste */
+    }
+    
+    .project-modal h2 { font-size: 1.3rem; margin: 0 0 10px 0; }
+    .project-modal iframe { margin: 0; }
+    .project-modal p { font-size: 0.85rem; margin-top: 10px; overflow-y: auto; }
+
+    /* Ajustements du slider Making-off pour les petits écrans */
+    .track-row img, .track-row video {
+        height: 20vh; 
+    }
+    .slider-btn {
+        width: 40px;
+        height: 40px;
+        margin-top: -20px;
+        margin-left: -20px;
+    }
 }

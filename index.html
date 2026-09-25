@@ -20,7 +20,6 @@
     <!-- ========================================== -->
     <header>
         <div class="header-container">
-            <!-- Le logo renvoie désormais au tout début du site (#hero) -->
             <a href="#hero">
                 <img class="logo" src="assets/Branding/Logo-Large.png" alt="Logo 16:9 Prod">
             </a>
@@ -37,29 +36,66 @@
     <!-- ========================================== -->
     <section class="hero" id="hero">
         <div id="hero-content" class="hero-content">
+            <!-- Balise picture : Affiche portrait sur mobile, paysage sur desktop -->
             <div class="slide">
-                <img class="slide-bg" src="assets/Affiche/Large/Hope---Large.jpg" alt="Fond">
-                <img class="slide-img" src="assets/Affiche/Large/Hope---Large.jpg" alt="Affiche">
+                <picture>
+                    <source media="(max-width: 768px)" srcset="assets/Affiche/Affiche/Hope---Affiche.jpg">
+                    <img class="slide-bg" src="assets/Affiche/Large/Hope---Large.jpg" alt="Fond">
+                </picture>
+                <picture>
+                    <source media="(max-width: 768px)" srcset="assets/Affiche/Affiche/Hope---Affiche.jpg">
+                    <img class="slide-img" src="assets/Affiche/Large/Hope---Large.jpg" alt="Affiche">
+                </picture>
             </div>
             <div class="slide">
-                <img class="slide-bg" src="assets/Affiche/Large/2-Dreams-2-Nightmare---Large.jpg" alt="Fond">
-                <img class="slide-img" src="assets/Affiche/Large/2-Dreams-2-Nightmare---Large.jpg" alt="Affiche">
+                <picture>
+                    <source media="(max-width: 768px)" srcset="assets/Affiche/Affiche/2-Dreams-2-Nightmare---Affiche.jpg">
+                    <img class="slide-bg" src="assets/Affiche/Large/2-Dreams-2-Nightmare---Large.jpg" alt="Fond">
+                </picture>
+                <picture>
+                    <source media="(max-width: 768px)" srcset="assets/Affiche/Affiche/2-Dreams-2-Nightmare---Affiche.jpg">
+                    <img class="slide-img" src="assets/Affiche/Large/2-Dreams-2-Nightmare---Large.jpg" alt="Affiche">
+                </picture>
             </div>
             <div class="slide">
-                <img class="slide-bg" src="assets/Affiche/Large/Contre-Soiree---Large.jpg" alt="Fond">
-                <img class="slide-img" src="assets/Affiche/Large/Contre-Soiree---Large.jpg" alt="Affiche">
+                <picture>
+                    <source media="(max-width: 768px)" srcset="assets/Affiche/Affiche/Contre-Soiree---Affiche.jpg">
+                    <img class="slide-bg" src="assets/Affiche/Large/Contre-Soiree---Large.jpg" alt="Fond">
+                </picture>
+                <picture>
+                    <source media="(max-width: 768px)" srcset="assets/Affiche/Affiche/Contre-Soiree---Affiche.jpg">
+                    <img class="slide-img" src="assets/Affiche/Large/Contre-Soiree---Large.jpg" alt="Affiche">
+                </picture>
             </div>
             <div class="slide">
-                <img class="slide-bg" src="assets/Affiche/Large/New-Era---Large.jpg" alt="Fond">
-                <img class="slide-img" src="assets/Affiche/Large/New-Era---Large.jpg" alt="Affiche">
+                <picture>
+                    <source media="(max-width: 768px)" srcset="assets/Affiche/Affiche/New-Era---Affiche.jpg">
+                    <img class="slide-bg" src="assets/Affiche/Large/New-Era---Large.jpg" alt="Fond">
+                </picture>
+                <picture>
+                    <source media="(max-width: 768px)" srcset="assets/Affiche/Affiche/New-Era---Affiche.jpg">
+                    <img class="slide-img" src="assets/Affiche/Large/New-Era---Large.jpg" alt="Affiche">
+                </picture>
             </div>
             <div class="slide">
-                <img class="slide-bg" src="assets/Affiche/Large/Rencontre-Accidentelle---Large.jpg" alt="Fond">
-                <img class="slide-img" src="assets/Affiche/Large/Rencontre-Accidentelle---Large.jpg" alt="Affiche">
+                <picture>
+                    <source media="(max-width: 768px)" srcset="assets/Affiche/Affiche/Rencontre-Accidentelle---Affiche.jpg">
+                    <img class="slide-bg" src="assets/Affiche/Large/Rencontre-Accidentelle---Large.jpg" alt="Fond">
+                </picture>
+                <picture>
+                    <source media="(max-width: 768px)" srcset="assets/Affiche/Affiche/Rencontre-Accidentelle---Affiche.jpg">
+                    <img class="slide-img" src="assets/Affiche/Large/Rencontre-Accidentelle---Large.jpg" alt="Affiche">
+                </picture>
             </div>
             <div class="slide">
-                <img class="slide-bg" src="assets/Affiche/Large/On-Papote!---Large.jpg" alt="Fond">
-                <img class="slide-img" src="assets/Affiche/Large/On-Papote!---Large.jpg" alt="Affiche">
+                <picture>
+                    <source media="(max-width: 768px)" srcset="assets/Affiche/Affiche/On-Papote-!---Affiche.jpg">
+                    <img class="slide-bg" src="assets/Affiche/Large/On-Papote!---Large.jpg" alt="Fond">
+                </picture>
+                <picture>
+                    <source media="(max-width: 768px)" srcset="assets/Affiche/Affiche/On-Papote-!---Affiche.jpg">
+                    <img class="slide-img" src="assets/Affiche/Large/On-Papote!---Large.jpg" alt="Affiche">
+                </picture>
             </div>
         </div>
     </section>
@@ -82,7 +118,7 @@
             <p id="project-desc">Description...</p>
         </div>
 
-        <!-- Bibliothèque (Moitié Gauche) -->
+        <!-- Bibliothèque -->
         <div class="library">
             <img src="assets/Cassette/Hope---Cassette.png" alt="Hope Tape" id="hope-tape" class="tape"
                 data-title="Hope" 
