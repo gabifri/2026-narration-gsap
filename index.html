@@ -15,9 +15,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- ========================================== -->
-    <!-- HEADER (Logo cliquable + Menu de Nav)      -->
-    <!-- ========================================== -->
+    <!-- HEADER -->
     <header>
         <div class="header-container">
             <a href="#hero">
@@ -31,12 +29,9 @@
         </div>
     </header>
 
-    <!-- ========================================== -->
-    <!-- SECTION 1 : HERO (Slider Horizontal)       -->
-    <!-- ========================================== -->
+    <!-- SECTION 1 : HERO -->
     <section class="hero" id="hero">
         <div id="hero-content" class="hero-content">
-            <!-- Balise picture : Affiche portrait sur mobile, paysage sur desktop -->
             <div class="slide">
                 <picture>
                     <source media="(max-width: 768px)" srcset="assets/Affiche/Affiche/Hope---Affiche.jpg">
@@ -100,112 +95,85 @@
         </div>
     </section>
 
-    <!-- ========================================== -->
-    <!-- SECTION 2 : TAGLINE                        -->
-    <!-- ========================================== -->
+    <!-- SECTION 2 : TAGLINE -->
     <section class="tagline">
         <h1 class="tagline-text">We Love Making Vidéos<span class="point-rouge">.</span></h1>
     </section>
 
-    <!-- ========================================== -->
-    <!-- SECTION 3 : LECTEUR VHS & BIBLIOTHÈQUE     -->
-    <!-- ========================================== -->
+    <!-- SECTION 3 : LECTEUR VHS & BIBLIOTHÈQUE -->
     <section class="cassette" id="cassette">
-        <!-- Modale Vidéo (Masquée par défaut) -->
+        
+        <!-- Modale Vidéo (ancrée dans la section) -->
         <div class="project-modal">
             <h2 id="project-title">Titre</h2>
             <iframe id="project-video" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             <p id="project-desc">Description...</p>
         </div>
 
-        <!-- Bibliothèque -->
+        <!-- 1. Bibliothèque (À GAUCHE sur PC) -->
         <div class="library">
             <img src="assets/Cassette/Hope---Cassette.png" alt="Hope Tape" id="hope-tape" class="tape"
-                data-title="Hope" 
-                data-yt="https://www.youtube.com/embed/DKXTkTZUjUE?si=xpSwnwaVDl9pfSQF" 
-                data-desc="Court-métrage dramatique écrit, réalisé et monté par Léo Torras. L'histoire d'une rencontre inattendue, diffusée en avant-première au Cinéma L'Arlequin à Paris en décembre 2025"
-                data-poster="assets/Minia/Hope.jpg"
-                data-type="court-metrage">
+                data-title="Hope" data-yt="https://www.youtube.com/embed/DKXTkTZUjUE?si=xpSwnwaVDl9pfSQF" 
+                data-desc="Court-métrage dramatique écrit, réalisé et monté par Léo Torras."
+                data-poster="assets/Minia/Hope.jpg" data-type="court-metrage">
 
             <img src="assets/Cassette/2-Dreams-2-Nightmares---Cassette.png" alt="2 Dreams 2 Nightmare Tape" id="dreams-tape" class="tape"
-                data-title="2 Dreams 2 Nightmares" 
-                data-yt="https://www.youtube.com/embed/HdoO8Qn9OaM?si=Kd8chBxXvnClMX_x" 
-                data-desc="Une expérimentation visuelle entre le rêve et le cauchemar. Projet narratif réalisé en co-production avec l'ESD Paris."
-                data-poster="assets/Minia/2-Dreams-2-Nightmare.jpg"
-                data-type="court-metrage">
+                data-title="2 Dreams 2 Nightmares" data-yt="https://www.youtube.com/embed/HdoO8Qn9OaM?si=Kd8chBxXvnClMX_x" 
+                data-desc="Une expérimentation visuelle entre le rêve et le cauchemar."
+                data-poster="assets/Minia/2-Dreams-2-Nightmare.jpg" data-type="court-metrage">
 
             <img src="assets/Cassette/Contre-Soiree---Cassette.png" alt="Contre Soirée Tape" id="contre-tape" class="tape"
-                data-title="Contre Soirée" 
-                data-yt="https://www.youtube.com/embed/ljMpkNSso1E?si=tZ6ZtN_3y1fafSaT" 
-                data-desc="Un thriller horrifique et psychologique, l'histoire d'un meutre pasionnel et d'une relatiion toxique et abusive, une véritable obssesion entre deux amis - Sur l'idée original de Tina Souverain"
-                data-poster="assets/Minia/Contre-Soiree.jpg"
-                data-type="court-metrage">
+                data-title="Contre Soirée" data-yt="https://www.youtube.com/embed/ljMpkNSso1E?si=tZ6ZtN_3y1fafSaT" 
+                data-desc="Un thriller horrifique et psychologique."
+                data-poster="assets/Minia/Contre-Soiree.jpg" data-type="court-metrage">
 
             <img src="assets/Cassette/New-Era---Cassette.png" alt="New Era Tape" id="new-era-tape" class="tape"
-                data-title="New Era" 
-                data-yt="https://www.youtube.com/embed/l7EB-Ch83OU?si=Ats6gyahB_yUfvPH"
-                data-desc="Le début d'une nouvelle ère. Un mélange d'introspéction, on revient sur le mois d'Aout de Léo TORRAS. Un projet de narration web, réalisé en co-production avec l'ESD Paris."
-                data-poster="assets/Minia/New-Era.jpg"
-                data-type="vlog">
+                data-title="New Era" data-yt="https://www.youtube.com/embed/l7EB-Ch83OU?si=Ats6gyahB_yUfvPH"
+                data-desc="Le début d'une nouvelle ère. Un projet de narration web."
+                data-poster="assets/Minia/New-Era.jpg" data-type="vlog">
 
             <img src="assets/Cassette/Rencontre-Accidentelle---Cassette.png" alt="Rencontre Accidentelle Tape" id="accidentelle-tape" class="tape"
-                data-title="Rencontre Accidentelle" 
-                data-yt="https://www.youtube.com/embed/he9H_67CkR8?si=pZNfraNg4zKUzhJI" 
-                data-desc="Court-métrage sur le thème de l'accident, réaliser dans le cadre d'un projet de cours en seconde au lycée LTSPN. - Co-réaliser avec Noémie JALLIER"
-                data-poster="assets/Minia/Rencontre-Accidentelle.jpg"
-                data-type="court-metrage">
+                data-title="Rencontre Accidentelle" data-yt="https://www.youtube.com/embed/he9H_67CkR8?si=pZNfraNg4zKUzhJI" 
+                data-desc="Court-métrage sur le thème de l'accident."
+                data-poster="assets/Minia/Rencontre-Accidentelle.jpg" data-type="court-metrage">
 
             <img src="assets/Cassette/On-Papote---Cassette.png" alt="On Papote! Tape" id="papote-tape" class="tape"
-                data-title="On Papote!" 
-                data-yt="https://www.youtube.com/embed/EMV662yssE8?si=P9aTnX0Z1pvTVKTr" 
-                data-desc="Le podcast interactif en live sur YouTube ! Intelligence artificielle, jeux vidéo, cinéma et musique : on décrypte l'actu et on échange en direct avec le chat."
-                data-poster="assets/Minia/On-Papote-2.jpg"
-                data-type="podcast">
+                data-title="On Papote!" data-yt="https://www.youtube.com/embed/EMV662yssE8?si=P9aTnX0Z1pvTVKTr" 
+                data-desc="Le podcast interactif en live sur YouTube !"
+                data-poster="assets/Minia/On-Papote-2.jpg" data-type="podcast">
 
             <img src="assets/Cassette/aeMotion---Cassette.png" alt="aeMotion Tape" id="aemotion-tape" class="tape"
-                data-title="aeMotion - Le Future de la Mobilité Urbaine" 
-                data-yt="https://www.youtube.com/embed/Q3GywqVfiEg?si=83jR-Y4IVZixP6Jt" 
-                data-desc="Documentaire tech : le futur de la mobilité urbaine. Analyse et mise en image des solutions de transport qui transforment nos déplacements en ville."
-                data-poster="assets/Minia/AEMOTION.jpg"
-                data-type="docu">
+                data-title="aeMotion - Le Future de la Mobilité Urbaine" data-yt="https://www.youtube.com/embed/Q3GywqVfiEg?si=83jR-Y4IVZixP6Jt" 
+                data-desc="Documentaire tech : le futur de la mobilité urbaine."
+                data-poster="assets/Minia/AEMOTION.jpg" data-type="docu">
 
             <img src="assets/Cassette/Bienvenue-Chez-IBM---Cassette.png" alt="Bienvenue Chez IBM Tape" id="ibm-tape" class="tape"
-                data-title="Bienvenue Chez IBM" 
-                data-yt="https://www.youtube.com/embed/M4zFe8xMH1Y?si=hXg9ZSl0lazGcNuQ" 
-                data-desc="Reportage exclusif tourné lors de VivaTech 2026. Immersion au cœur de l'écosystème IBM et découverte des capacités de l'IA BOB."
-                data-poster="assets/Minia/IBM.jpg"
-                data-type="docu">
+                data-title="Bienvenue Chez IBM" data-yt="https://www.youtube.com/embed/M4zFe8xMH1Y?si=hXg9ZSl0lazGcNuQ" 
+                data-desc="Reportage exclusif tourné lors de VivaTech 2026."
+                data-poster="assets/Minia/IBM.jpg" data-type="docu">
 
             <img src="assets/Cassette/CJRMR---EP1---Cassette.png" alt="CJRMR - EP1 Tape" id="cjrmr1-tape" class="tape"
-                data-title="CJRMR - EP1" 
-                data-yt="https://www.youtube.com/embed/awoq8JWrzfI?si=CU8VwDWd8lED7fFg" 
-                data-desc="Série documentaire. On revient sur la création et le tournage du court métrage 'Hope'."
-                data-poster="assets/Minia/Hope-CJRMR---EP1.jpg"
-                data-type="docu">
+                data-title="CJRMR - EP1" data-yt="https://www.youtube.com/embed/awoq8JWrzfI?si=CU8VwDWd8lED7fFg" 
+                data-desc="Série documentaire. Création du court métrage Hope."
+                data-poster="assets/Minia/Hope-CJRMR---EP1.jpg" data-type="docu">
 
             <img src="assets/Cassette/CJRMR---EP2---Cassette.png" alt="CJRMR - EP2 Tape" id="cjrmr2-tape" class="tape"
-                data-title="CJRMR - EP2" 
-                data-yt="https://www.youtube.com/embed/yfOpPnP-sPk?si=9pJS7nDIISkP4PS1" 
-                data-desc="Série documentaire. On revient sur la création et le tournage du court métrage 'Hope'."
-                data-poster="assets/Minia/Hope-CJRMR---EP2.jpg"
-                data-type="docu">
+                data-title="CJRMR - EP2" data-yt="https://www.youtube.com/embed/yfOpPnP-sPk?si=9pJS7nDIISkP4PS1" 
+                data-desc="Série documentaire. Tournage du court métrage Hope."
+                data-poster="assets/Minia/Hope-CJRMR---EP2.jpg" data-type="docu">
 
             <img src="assets/Cassette/Vivatech-2k25---Cassette.png" alt="Vivatech 2k25 Tape" id="vivatech-2k25-tape" class="tape"
-                data-title="Vivatech 2k25" 
-                data-yt="https://www.youtube.com/embed/a51C2KgYWbk?si=Plr25RIcKE0_8dRJ" 
-                data-desc="Retour en images sur le salon VivaTech 2025. Une plongée dynamique dans l'effervescence de la tech européenne et des startups."
-                data-poster="assets/Minia/Vivatech-2025.jpg"
-                data-type="docu">
+                data-title="Vivatech 2k25" data-yt="https://www.youtube.com/embed/a51C2KgYWbk?si=Plr25RIcKE0_8dRJ" 
+                data-desc="Retour en images sur le salon VivaTech 2025."
+                data-poster="assets/Minia/Vivatech-2025.jpg" data-type="docu">
 
             <img src="assets/Cassette/Vivatech-2k26---Cassette.png" alt="Vivatech 2k26 Tape" id="vivatech-2k26-tape" class="tape"
-                data-title="Vivatech 2k26" 
-                data-yt="https://www.youtube.com/embed/e5WxpjDRiaM?si=3cft7G5Fyh9RvlS8" 
-                data-desc="Couverture de l'édition 2026 du salon VivaTech. Captation au cœur de l'événement et décryptage des innovations tech de l'année."
-                data-poster="assets/Minia/Vivatech-2026.jpg"
-                data-type="docu">
+                data-title="Vivatech 2k26" data-yt="https://www.youtube.com/embed/e5WxpjDRiaM?si=3cft7G5Fyh9RvlS8" 
+                data-desc="Couverture de l'édition 2026 du salon VivaTech."
+                data-poster="assets/Minia/Vivatech-2026.jpg" data-type="docu">
         </div>
 
-        <!-- Lecteur (Moitié Droite) -->
+        <!-- 2. Lecteur (À DROITE sur PC) -->
         <div class="player-zone">
             <div class="player-bg"></div>
             <div class="lecteur">
@@ -213,152 +181,82 @@
             </div>
             <button class="eject-btn" onclick="ejectFunction()">⏏ EJECT</button>
         </div>
+
     </section>
 
-    <!-- ========================================== -->
-    <!-- SECTION 4 : MAKING-OFF (Slider Infini)     -->
-    <!-- ========================================== -->
+    <!-- SECTION 4 : MAKING-OFF -->
     <section class="making-off" id="making-off">
         <div class="making-off-title">
             <h2 class="tagline-text">L'envers du décor<span class="point-rouge">.</span></h2>
         </div>
 
         <div class="track-slider">
-            <!-- PISTE DU FOND (Making-of en vrac) -->
             <div class="track-container bg-track">
                 <div class="infinite-track">
-                    
-                    <!-- Ligne du haut (Photos/Vidéos) -->
                     <div class="track-row">
-                        <!-- SÉRIE 1 -->
                         <img src="assets/Making-off/IMG_5050.jpg" alt="Making-off">
                         <video src="assets/Making-off/VID-20240914-WA0010.mp4" autoplay muted loop playsinline></video>
                         <img src="assets/Making-off/IMG-20260530-WA0000(1).jpg" alt="Making-off">
                         <img src="assets/Making-off/PXL_20260116_191611347.jpg" alt="Making-off">
                         <video src="assets/Making-off/IMG_9272.MOV" autoplay muted loop playsinline></video>
                         <img src="assets/Making-off/IMG20251005214111.jpg" alt="Making-off">
-                        <img src="assets/Making-off/PXL_20260528_140703844.jpg" alt="Making-off">
-                        <img src="assets/Making-off/IMG_5454.jpg" alt="Making-off">
-                        <img src="assets/Making-off/IMG_5051.jpg" alt="Making-off">
-                        <video src="assets/Making-off/VID-20240914-WA0011.mp4" autoplay muted loop playsinline></video>
-                        <img src="assets/Making-off/IMG-20260530-WA0002(1).jpg" alt="Making-off">
-                        <img src="assets/Making-off/PXL_20260116_191612548.jpg" alt="Making-off">
-                        <!-- SÉRIE 2 (Boucle) -->
                         <img src="assets/Making-off/IMG_5050.jpg" alt="Making-off">
                         <video src="assets/Making-off/VID-20240914-WA0010.mp4" autoplay muted loop playsinline></video>
                         <img src="assets/Making-off/IMG-20260530-WA0000(1).jpg" alt="Making-off">
                         <img src="assets/Making-off/PXL_20260116_191611347.jpg" alt="Making-off">
                         <video src="assets/Making-off/IMG_9272.MOV" autoplay muted loop playsinline></video>
                         <img src="assets/Making-off/IMG20251005214111.jpg" alt="Making-off">
-                        <img src="assets/Making-off/PXL_20260528_140703844.jpg" alt="Making-off">
-                        <img src="assets/Making-off/IMG_5454.jpg" alt="Making-off">
-                        <img src="assets/Making-off/IMG_5051.jpg" alt="Making-off">
-                        <video src="assets/Making-off/VID-20240914-WA0011.mp4" autoplay muted loop playsinline></video>
-                        <img src="assets/Making-off/IMG-20260530-WA0002(1).jpg" alt="Making-off">
-                        <img src="assets/Making-off/PXL_20260116_191612548.jpg" alt="Making-off">
                     </div>
-
-                    <!-- Ligne du bas (Photos/Vidéos) -->
                     <div class="track-row">
-                        <!-- SÉRIE 1 -->
                         <img src="assets/Making-off/WhatsApp-Image-2024-09-14-à-19.16.12_82e8b33e.jpg" alt="Making-off">
                         <video src="assets/Making-off/WhatsApp-Vidéo-2024-09-15-à-20.20.28_e6e467d7.mp4" autoplay muted loop playsinline></video>
                         <img src="assets/Making-off/IMG_9281.jpg" alt="Making-off">
                         <img src="assets/Making-off/IMG_5053.jpg" alt="Making-off">
                         <video src="assets/Making-off/VID-20240914-WA0012.mp4" autoplay muted loop playsinline></video>
                         <img src="assets/Making-off/IMG-20260530-WA0003(1).jpg" alt="Making-off">
-                        <img src="assets/Making-off/PXL_20260116_191613754.jpg" alt="Making-off">
-                        <video src="assets/Making-off/IMG_9279.MOV" autoplay muted loop playsinline></video>
-                        <img src="assets/Making-off/IMG20251005214112.jpg" alt="Making-off">
-                        <img src="assets/Making-off/PXL_20260528_140709623.jpg" alt="Making-off">
-                        <img src="assets/Making-off/IMG_5455.jpg" alt="Making-off">
-                        <img src="assets/Making-off/WhatsApp-Image-2024-09-14-à-19.16.12_e9e25bb0.jpg" alt="Making-off">
-                        <!-- SÉRIE 2 (Boucle) -->
                         <img src="assets/Making-off/WhatsApp-Image-2024-09-14-à-19.16.12_82e8b33e.jpg" alt="Making-off">
                         <video src="assets/Making-off/WhatsApp-Vidéo-2024-09-15-à-20.20.28_e6e467d7.mp4" autoplay muted loop playsinline></video>
                         <img src="assets/Making-off/IMG_9281.jpg" alt="Making-off">
                         <img src="assets/Making-off/IMG_5053.jpg" alt="Making-off">
                         <video src="assets/Making-off/VID-20240914-WA0012.mp4" autoplay muted loop playsinline></video>
                         <img src="assets/Making-off/IMG-20260530-WA0003(1).jpg" alt="Making-off">
-                        <img src="assets/Making-off/PXL_20260116_191613754.jpg" alt="Making-off">
-                        <video src="assets/Making-off/IMG_9279.MOV" autoplay muted loop playsinline></video>
-                        <img src="assets/Making-off/IMG20251005214112.jpg" alt="Making-off">
-                        <img src="assets/Making-off/PXL_20260528_140709623.jpg" alt="Making-off">
-                        <img src="assets/Making-off/IMG_5455.jpg" alt="Making-off">
-                        <img src="assets/Making-off/WhatsApp-Image-2024-09-14-à-19.16.12_e9e25bb0.jpg" alt="Making-off">
                     </div>
-
                 </div>
             </div>
 
-            <!-- PISTE DU DESSUS (Affiches Nettes) -->
             <div class="track-container fg-overlay">
                 <div class="infinite-track">
-                    
-                    <!-- Ligne du haut (Affiches) -->
                     <div class="track-row">
-                        <!-- SÉRIE 1 -->
                         <img src="assets/Affiche/Affiche/Hope---Affiche.jpg" alt="Affiche">
                         <img src="assets/Affiche/Affiche/New-Era---Affiche.jpg" alt="Affiche">
                         <img src="assets/Affiche/Affiche/On-Papote-!---Affiche.jpg" alt="Affiche">
                         <img src="assets/Affiche/Affiche/CJRMR---Affiche.jpg" alt="Affiche">
                         <img src="assets/Affiche/Affiche/Hope---Affiche.jpg" alt="Affiche">
                         <img src="assets/Affiche/Affiche/New-Era---Affiche.jpg" alt="Affiche">
-                        <img src="assets/Affiche/Affiche/On-Papote-!---Affiche.jpg" alt="Affiche">
-                        <img src="assets/Affiche/Affiche/CJRMR---Affiche.jpg" alt="Affiche">
-                        <img src="assets/Affiche/Affiche/Hope---Affiche.jpg" alt="Affiche">
-                        <img src="assets/Affiche/Affiche/New-Era---Affiche.jpg" alt="Affiche">
-                        <img src="assets/Affiche/Affiche/On-Papote-!---Affiche.jpg" alt="Affiche">
-                        <img src="assets/Affiche/Affiche/CJRMR---Affiche.jpg" alt="Affiche">
-                        <!-- SÉRIE 2 (Boucle) -->
                         <img src="assets/Affiche/Affiche/Hope---Affiche.jpg" alt="Affiche">
                         <img src="assets/Affiche/Affiche/New-Era---Affiche.jpg" alt="Affiche">
                         <img src="assets/Affiche/Affiche/On-Papote-!---Affiche.jpg" alt="Affiche">
                         <img src="assets/Affiche/Affiche/CJRMR---Affiche.jpg" alt="Affiche">
                         <img src="assets/Affiche/Affiche/Hope---Affiche.jpg" alt="Affiche">
                         <img src="assets/Affiche/Affiche/New-Era---Affiche.jpg" alt="Affiche">
-                        <img src="assets/Affiche/Affiche/On-Papote-!---Affiche.jpg" alt="Affiche">
-                        <img src="assets/Affiche/Affiche/CJRMR---Affiche.jpg" alt="Affiche">
-                        <img src="assets/Affiche/Affiche/Hope---Affiche.jpg" alt="Affiche">
-                        <img src="assets/Affiche/Affiche/New-Era---Affiche.jpg" alt="Affiche">
-                        <img src="assets/Affiche/Affiche/On-Papote-!---Affiche.jpg" alt="Affiche">
-                        <img src="assets/Affiche/Affiche/CJRMR---Affiche.jpg" alt="Affiche">
                     </div>
-
-                    <!-- Ligne du bas (Affiches) -->
                     <div class="track-row">
-                        <!-- SÉRIE 1 -->
                         <img src="assets/Affiche/Affiche/2-Dreams-2-Nightmare---Affiche.jpg" alt="Affiche">
                         <img src="assets/Affiche/Affiche/Contre-Soiree---Affiche.jpg" alt="Affiche">
                         <img src="assets/Affiche/Affiche/Rencontre-Accidentelle---Affiche.jpg" alt="Affiche">
                         <img src="assets/Affiche/Affiche/Constat---Affiche.jpg" alt="Affiche">
                         <img src="assets/Affiche/Affiche/2-Dreams-2-Nightmare---Affiche.jpg" alt="Affiche">
                         <img src="assets/Affiche/Affiche/Contre-Soiree---Affiche.jpg" alt="Affiche">
-                        <img src="assets/Affiche/Affiche/Rencontre-Accidentelle---Affiche.jpg" alt="Affiche">
-                        <img src="assets/Affiche/Affiche/Constat---Affiche.jpg" alt="Affiche">
-                        <img src="assets/Affiche/Affiche/2-Dreams-2-Nightmare---Affiche.jpg" alt="Affiche">
-                        <img src="assets/Affiche/Affiche/Contre-Soiree---Affiche.jpg" alt="Affiche">
-                        <img src="assets/Affiche/Affiche/Rencontre-Accidentelle---Affiche.jpg" alt="Affiche">
-                        <img src="assets/Affiche/Affiche/Constat---Affiche.jpg" alt="Affiche">
-                        <!-- SÉRIE 2 (Boucle) -->
                         <img src="assets/Affiche/Affiche/2-Dreams-2-Nightmare---Affiche.jpg" alt="Affiche">
                         <img src="assets/Affiche/Affiche/Contre-Soiree---Affiche.jpg" alt="Affiche">
                         <img src="assets/Affiche/Affiche/Rencontre-Accidentelle---Affiche.jpg" alt="Affiche">
                         <img src="assets/Affiche/Affiche/Constat---Affiche.jpg" alt="Affiche">
                         <img src="assets/Affiche/Affiche/2-Dreams-2-Nightmare---Affiche.jpg" alt="Affiche">
                         <img src="assets/Affiche/Affiche/Contre-Soiree---Affiche.jpg" alt="Affiche">
-                        <img src="assets/Affiche/Affiche/Rencontre-Accidentelle---Affiche.jpg" alt="Affiche">
-                        <img src="assets/Affiche/Affiche/Constat---Affiche.jpg" alt="Affiche">
-                        <img src="assets/Affiche/Affiche/2-Dreams-2-Nightmare---Affiche.jpg" alt="Affiche">
-                        <img src="assets/Affiche/Affiche/Contre-Soiree---Affiche.jpg" alt="Affiche">
-                        <img src="assets/Affiche/Affiche/Rencontre-Accidentelle---Affiche.jpg" alt="Affiche">
-                        <img src="assets/Affiche/Affiche/Constat---Affiche.jpg" alt="Affiche">
                     </div>
-
                 </div>
             </div>
 
-            <!-- Curseur (Slider Handle) -->
             <div class="slider-handle">
                 <div class="slider-btn">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
@@ -371,9 +269,7 @@
     <!-- FOOTER -->
     <footer class="site-footer">
         <div class="footer-content">
-            <a href="#hero">
-                <img class="footer-logo" src="assets/Branding/Logo-Large.png" alt="Logo 16:9 Prod">
-            </a>
+            <a href="#hero"><img class="footer-logo" src="assets/Branding/Logo-Large.png" alt="Logo"></a>
             <div class="footer-links">
                 <a href="#hero">Overview</a>
                 <a href="#cassette">Projets</a>

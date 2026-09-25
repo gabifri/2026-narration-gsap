@@ -6,549 +6,220 @@
     --c-bg-dark: #000000;
     --c-bg-panel: #111111;
     --c-text: #ffffff;
-    
     --font-main: 'Inter', sans-serif;
     --font-title: 'Afacad Flux', sans-serif;
 }
 
-/* =========================================
-   2. TYPOGRAPHIE & BASE
-   ========================================= */
 body {
-    margin: 0;
-    background-color: var(--c-bg-dark);
-    color: var(--c-text);
-    font-family: var(--font-main);
-    overflow-x: hidden; 
+    margin: 0; background-color: var(--c-bg-dark); color: var(--c-text);
+    font-family: var(--font-main); overflow-x: hidden; 
 }
 
 /* =========================================
-   3. HEADER & NAVIGATION (Glassmorphism)
+   2. HEADER
    ========================================= */
 header {
-    background: rgba(255, 255, 255, 0.08);
-    padding: 12px 30px;
-    margin: 20px auto;
-    border-radius: 50px;
-    backdrop-filter: blur(20px); 
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    position: fixed;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 99999; 
-    width: min(90%, 1100px);
-    box-sizing: border-box;
+    background: rgba(255, 255, 255, 0.08); padding: 12px 30px; margin: 20px auto;
+    border-radius: 50px; backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.2);
+    position: fixed; top: 0; left: 50%; transform: translateX(-50%);
+    z-index: 99999; width: min(90%, 1100px); box-sizing: border-box;
 }
-
-.header-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-}
-
-.logo {
-    width: 180px; 
-    height: auto;
-}
-
-.header-nav {
-    display: flex;
-    gap: 30px;
-}
-
+.header-container { display: flex; justify-content: space-between; align-items: center; width: 100%; }
+.logo { width: 180px; height: auto; }
+.header-nav { display: flex; gap: 30px; }
 .header-nav a {
-    color: var(--c-text);
-    text-decoration: none;
-    font-family: var(--font-title);
-    font-size: 1.1rem;
-    opacity: 0.8;
-    transition: opacity 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
+    color: var(--c-text); text-decoration: none; font-family: var(--font-title);
+    font-size: 1.1rem; opacity: 0.8; transition: opacity 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
 }
-
-.header-nav a:hover {
-    opacity: 1;
-    color: var(--c-primary);
-    text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
-}
+.header-nav a:hover { opacity: 1; color: var(--c-primary); text-shadow: 0 0 10px rgba(255, 0, 0, 0.5); }
 
 /* =========================================
-   SECTION 1 : HERO (SCROLL HORIZONTAL)
+   3. HERO & TAGLINE
    ========================================= */
-.hero {
-    overflow: hidden;
-    height: 100vh;
-    width: 100%;
-    background-color: var(--c-bg-dark);
-    margin-bottom: -2px; 
-}
+.hero { overflow: hidden; height: 100vh; width: 100%; background-color: var(--c-bg-dark); margin-bottom: -2px; }
+.hero-content { display: flex; width: max-content; height: 100%; }
+.slide { width: 100vw; height: 100vh; position: relative; flex-shrink: 0; overflow: hidden; }
+.slide-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; filter: blur(40px) brightness(0.6); transform: scale(1.1); z-index: 1; }
+.slide-img { position: relative; width: 100%; height: 100%; object-fit: contain; padding: 100px 20px 20px 20px; box-sizing: border-box; filter: drop-shadow(0px 10px 30px rgba(0, 0, 0, 0.5)); z-index: 2; }
 
-.hero-content {
-    display: flex;
-    width: max-content;
-    height: 100%;
-}
-
-.slide {
-    width: 100vw;
-    height: 100vh;
-    position: relative; 
-    flex-shrink: 0;
-    overflow: hidden;
-}
-
-.slide-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover; 
-    filter: blur(40px) brightness(0.6); 
-    transform: scale(1.1); 
-    z-index: 1;
-}
-
-.slide-img {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    object-fit: contain; 
-    padding: 100px 20px 20px 20px; 
-    box-sizing: border-box;
-    filter: drop-shadow(0px 10px 30px rgba(0, 0, 0, 0.5)); 
-    z-index: 2;
-}
+.tagline { display: flex; justify-content: center; align-items: center; padding: 80px 20px; background: var(--c-bg-dark); }
+.tagline-text { margin: 0; font-family: var(--font-title); font-size: clamp(2.5rem, 6vw, 6rem); color: var(--c-text); text-align: center; }
+.point-rouge { color: var(--c-primary); animation: rec-blink 1.5s infinite ease-in-out; }
 
 /* =========================================
-   SECTION 2 : TAGLINE
-   ========================================= */
-.tagline {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
-    padding: 80px 20px; 
-    background: var(--c-bg-dark);
-    z-index: 1;
-}
-
-.tagline-text {
-    margin: 0;
-    font-family: var(--font-title);
-    font-size: clamp(2.5rem, 6vw, 6rem); 
-    color: var(--c-text);
-    text-align: center;
-}
-
-.point-rouge {
-    color: var(--c-primary);
-    animation: rec-blink 1.5s infinite ease-in-out;
-}
-
-/* =========================================
-   SECTION 3 : LECTEUR VHS & BIBLIOTHÈQUE
+   4. SECTION CASSETTES (PC - BASE)
    ========================================= */
 #cassette {
     display: flex;
+    flex-direction: row; /* Ordre correct : Bibliothèque (gauche), Lecteur (droite) */
+    width: 100%;
     height: 100vh;
-    width: 100%;
     background-color: var(--c-bg-panel);
-    position: relative;
-    overflow: hidden;
+    position: relative; /* Empêche la modale de flotter en dehors de cette section */
+    overflow: hidden; /* Empêche le site de scroller sur le côté */
 }
 
-.library {
-    width: 50%;
-    padding: 80px 20px 50px 20px; 
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-content: flex-start;
-    gap: 20px;
-    overflow: visible !important; 
-    border-right: 2px dashed #444; 
-    position: relative;
-    z-index: 999;
-    box-sizing: border-box; 
-}
-
-.tape {
-    height: 130px;
-    cursor: grab;
-    position: relative;
-    z-index: 10;
-    margin-top: -50px; 
-    transition: transform 0.2s ease, z-index 0s;
-}
-
-.tape:hover {
-    transform: scale(1.1); 
-    z-index: 10000 !important; 
-}
-
-.player-zone {
-    width: 50%;
-    display: flex;
-    flex-direction: column; 
-    justify-content: center;
-    align-items: center;
-    gap: 20px; 
-    position: relative; 
-    overflow: hidden; 
-    z-index: 1; 
-    box-sizing: border-box; 
-}
-
-.player-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    filter: blur(40px) brightness(0.4); 
-    transform: scale(1.2); 
-    pointer-events: none;
-    opacity: 0; 
-    z-index: 0; 
-}
-
-.lecteur {
-    width: 350px;
-    height: 180px;
-    border: 3px solid var(--c-primary);
-    border-radius: 10px;
-    background: var(--c-bg-dark);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 0 15px rgba(255, 0, 0, 0.4); 
-    position: relative; 
-    z-index: 2;
-}
-
-.eject-btn {
-    background: var(--c-primary);
-    color: var(--c-text);
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    width: fit-content;
-    position: relative;
-    z-index: 20; 
-    pointer-events: none;
-    opacity: 0;
-}
-
+/* Modale Ancrée (Ne te suivra plus !) */
 .project-modal {
-    position: absolute;
+    position: absolute; 
     top: 0; 
     left: 0; 
-    width: calc(50% - 2px); 
+    width: 50%; /* Elle recouvre exactement la partie gauche */
     height: 100%;
-    margin: 0;
-    background: rgba(0, 0, 0, 0.95);
-    padding: 40px;
-    box-sizing: border-box;
-    display: flex; 
-    flex-direction: column;
-    justify-content: center; 
-    pointer-events: none;
-    opacity: 0; 
-    z-index: 2000 !important; 
+    background: rgba(0, 0, 0, 0.95); padding: 40px; box-sizing: border-box;
+    display: flex; flex-direction: column; justify-content: center; 
+    pointer-events: none; opacity: 0; z-index: 2000; 
 }
+.project-modal iframe { width: 100%; aspect-ratio: 16 / 9; margin: 20px 0; border-radius: 10px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6); }
 
-.project-modal iframe {
-    width: 100%;
-    aspect-ratio: 16 / 9; 
-    margin: 20px 0;
-    border-radius: 10px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
-}
-
-/* =========================================
-   SECTION 4 : MAKING-OFF (Avant/Après)
-   ========================================= */
-.making-off {
-    position: relative;
-    height: 100vh;
-    width: 100%;
-    background-color: var(--c-bg-dark);
-    overflow: hidden; 
-}
-
-.making-off-title {
-    position: absolute;
-    top: 6vh; 
-    width: 100%;
-    text-align: center;
-    z-index: 10;
-    pointer-events: none; 
-}
-
-.making-off-title .tagline-text {
-    font-size: clamp(2rem, 4vw, 4rem); 
-}
-
-.track-slider {
-    position: absolute;
-    bottom: 0; 
-    left: 0;
-    width: 100%;
-    height: 82vh; 
-}
-
-.track-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%; 
-    width: 100%;
-}
-
-.fg-overlay {
-    width: 50%; 
-    overflow: hidden; 
-    z-index: 2;
-    box-shadow: 5px 0 20px rgba(0, 0, 0, 0.8);
-}
-
-.infinite-track {
-    display: flex;
-    flex-direction: column;
-    justify-content: center; 
+/* Bibliothèque */
+.library {
+    width: 50%; height: 100%; padding: 80px 40px 50px 40px; display: flex;
+    flex-wrap: wrap; justify-content: center; align-content: flex-start;
     gap: 20px; 
-    width: max-content; 
-    padding-left: 20px;
-    height: 100%; 
+    overflow: visible; /* OBLIGATOIRE : La cassette ne sera jamais coupée en sortant */
+    position: relative; z-index: 999; /* Z-Index supérieur au lecteur pour passer dessus */
+    border-right: 2px dashed #444; box-sizing: border-box;
 }
 
-.track-row {
-    display: flex;
-    gap: 20px; 
+/* Cassettes PC (Empilées) */
+.tape {
+    height: 130px; cursor: grab; position: relative; z-index: 10;
+    margin-top: -50px; /* L'empilement marche parfaitement ici car il n'y a pas d'overflow auto */
+    transition: transform 0.2s ease; touch-action: none;
 }
+.library .tape:first-child, .library .tape:nth-child(2) { margin-top: 0; }
+.tape:hover { transform: scale(1.1); z-index: 10000; }
 
-.track-row img,
-.track-row video {
-    height: 36vh; 
-    aspect-ratio: 2 / 3; 
-    object-fit: cover;
-    border-radius: 12px;
-    pointer-events: none; 
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5); 
+/* Lecteur */
+.player-zone {
+    width: 50%; height: 100%; display: flex; flex-direction: column;
+    justify-content: center; align-items: center; gap: 20px; position: relative;
+    z-index: 1; box-sizing: border-box;
 }
-
-.slider-handle {
-    position: absolute;
-    top: 0;
-    left: 0;
-    margin-left: -2px; 
-    height: 100%; 
-    width: 4px;
-    background-color: var(--c-primary);
-    z-index: 3;
-    cursor: ew-resize; 
-}
-
-.slider-btn {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-top: -25px; 
-    margin-left: -25px; 
-    width: 50px;
-    height: 50px;
-    background-color: var(--c-text); 
-    border: 3px solid var(--c-primary);
-    border-radius: 50%;
-    display: flex; 
-    align-items: center;
-    justify-content: center;
-    gap: -5px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); 
-    transition: transform 0.2s ease;
-}
-
-.slider-btn svg {
-    stroke: var(--c-bg-dark); 
-}
-
-.slider-handle:hover .slider-btn {
-    transform: scale(1.15); 
-}
+.player-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; filter: blur(40px) brightness(0.4); transform: scale(1.2); pointer-events: none; opacity: 0; z-index: 0; }
+.lecteur { border: 3px solid var(--c-primary); border-radius: 10px; background: var(--c-bg-dark); display: flex; justify-content: center; align-items: center; box-shadow: 0 0 15px rgba(255, 0, 0, 0.4); position: relative; z-index: 2; width: 350px; height: 180px; }
+.eject-btn { background: var(--c-primary); color: var(--c-text); padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; position: relative; z-index: 20; pointer-events: none; opacity: 0; }
 
 /* =========================================
-   FOOTER
+   5. MAKING-OFF & FOOTER
    ========================================= */
-.site-footer {
-    background-color: var(--c-bg-panel); 
-    padding: 60px 20px 20px 20px;
-    border-top: 2px solid rgba(255, 0, 0, 0.3); 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 40px;
-}
+.making-off { position: relative; height: 100vh; width: 100%; background-color: var(--c-bg-dark); overflow: hidden; }
+.making-off-title { position: absolute; top: 6vh; width: 100%; text-align: center; z-index: 10; pointer-events: none; }
+.track-slider { position: absolute; bottom: 0; left: 0; width: 100%; height: 82vh; }
+.track-container { position: absolute; top: 0; left: 0; height: 100%; width: 100%; }
+.fg-overlay { width: 50%; overflow: hidden; z-index: 2; box-shadow: 5px 0 20px rgba(0, 0, 0, 0.8); }
+.infinite-track { display: flex; flex-direction: column; justify-content: center; gap: 20px; width: max-content; padding-left: 20px; height: 100%; }
+.track-row { display: flex; gap: 20px; }
+.track-row img, .track-row video { height: 36vh; aspect-ratio: 2 / 3; object-fit: cover; border-radius: 12px; pointer-events: none; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5); }
+.slider-handle { position: absolute; top: 0; left: 0; margin-left: -2px; height: 100%; width: 4px; background-color: var(--c-primary); z-index: 3; cursor: ew-resize; }
+.slider-btn { position: absolute; top: 50%; left: 50%; margin-top: -25px; margin-left: -25px; width: 50px; height: 50px; background-color: var(--c-text); border: 3px solid var(--c-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; gap: -5px; box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); transition: transform 0.2s ease; }
+.slider-btn svg { stroke: var(--c-bg-dark); }
+.slider-handle:hover .slider-btn { transform: scale(1.15); }
 
-.footer-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 30px;
-}
+.site-footer { background-color: var(--c-bg-panel); padding: 60px 20px 20px 20px; border-top: 2px solid rgba(255, 0, 0, 0.3); display: flex; flex-direction: column; align-items: center; gap: 40px; }
+.footer-content { display: flex; flex-direction: column; align-items: center; gap: 30px; }
+.footer-logo { width: 250px; filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.05)); transition: transform 0.3s ease; }
+.footer-logo:hover { transform: scale(1.05); }
+.footer-links { display: flex; gap: 40px; }
+.footer-links a { color: var(--c-text); text-decoration: none; font-family: var(--font-title); font-size: 1.3rem; opacity: 0.6; transition: opacity 0.3s ease, color 0.3s ease, text-shadow 0.3s ease; }
+.footer-links a:hover { opacity: 1; color: var(--c-primary); text-shadow: 0 0 10px rgba(255, 0, 0, 0.5); }
+.footer-bottom { width: 100%; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 20px; text-align: center; font-size: 0.9rem; color: rgba(255, 255, 255, 0.4); }
 
-.footer-logo {
-    width: 250px; 
-    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.05));
-    transition: transform 0.3s ease;
-}
-
-.footer-logo:hover {
-    transform: scale(1.05);
-}
-
-.footer-links {
-    display: flex;
-    gap: 40px;
-}
-
-.footer-links a {
-    color: var(--c-text);
-    text-decoration: none;
-    font-family: var(--font-title);
-    font-size: 1.3rem;
-    opacity: 0.6;
-    transition: opacity 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
-}
-
-.footer-links a:hover {
-    opacity: 1;
-    color: var(--c-primary);
-    text-shadow: 0 0 10px rgba(255, 0, 0, 0.5); 
-}
-
-.footer-bottom {
-    width: 100%;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding-top: 20px;
-    text-align: center;
-    font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.4);
-}
+@keyframes smooth-pulse { 0% { box-shadow: 0 0 15px rgba(255, 0, 0, 0.4); } 50% { box-shadow: 0 0 50px rgba(255, 0, 0, 1), 0 0 80px rgba(255, 0, 0, 0.5); } 100% { box-shadow: 0 0 15px rgba(255, 0, 0, 0.4); } }
+.lecteur.is-glowing { animation: smooth-pulse 2s infinite ease-in-out; }
 
 /* =========================================
-   ANIMATIONS & RESPONSIVE
+   6. RESPONSIVE DESIGN
    ========================================= */
-@keyframes smooth-pulse {
-    0% { box-shadow: 0 0 15px rgba(255, 0, 0, 0.4); }
-    50% { box-shadow: 0 0 50px rgba(255, 0, 0, 1), 0 0 80px rgba(255, 0, 0, 0.5); }
-    100% { box-shadow: 0 0 15px rgba(255, 0, 0, 0.4); }
-}
-
-.lecteur.is-glowing {
-    animation: smooth-pulse 2s infinite ease-in-out;
-}
-
-@media screen and (max-width: 1300px) {
+/* Tablette */
+@media screen and (min-width: 769px) and (max-width: 1300px) {
     .tape { height: 100px; margin-top: -30px; } 
     .project-modal iframe { max-width: 450px; }
-    .header-nav { display: none; } 
 }
 
-
-/* --- VERSION MOBILE 100% CORRIGÉE --- */
+/* --- MOBILE - LE CODE SOLIDE ET INFAILLIBLE --- */
 @media screen and (max-width: 768px) {
     .logo { width: 140px; }
     .header-container { justify-content: center; }
+    .header-nav { display: none; }
     .slide-img { padding: 80px 20px 20px 20px; object-fit: contain; }
     
-    /* 1. SECTION GLOBALE FIXE : Empêche la coupure des cassettes */
-    #cassette {
-        position: relative;
-        height: 100vh;
-        display: block; /* Écrase le flex du desktop */
-        overflow: hidden; /* Garde la section cloisonnée pour ne pas casser le scroll du site */
-    }
-
-    /* 2. LE LECTEUR : Collé proprement en haut */
-    .player-zone {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 45vh; 
-        z-index: 10; 
-        border-bottom: 2px dashed #444;
-        background-color: var(--c-bg-panel);
-    }
-
-    .lecteur {
-        width: 85%;
-        height: 140px;
-        margin-top: 60px; /* S'écarte du header */
-    }
-
-    /* 3. L'ASTUCE ANTI-COUPURE : La bibliothèque fait 100vh de haut mais on pousse les cassettes en bas via le padding */
-    .library {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100% !important;
-        height: 100vh !important;
-        padding: 50vh 20px 0 20px !important; /* Pousse le contenu vers la moitié basse */
-        display: flex !important;
-        flex-direction: row !important;
-        flex-wrap: nowrap !important;
-        overflow-x: auto !important; /* Le scroll horizontal se fait ici */
-        overflow-y: hidden !important; 
-        align-items: flex-start !important;
-        gap: 25px !important;
-        z-index: 20 !important; /* Supérieur au lecteur pour attraper la cassette */
-        border-right: none !important;
-        pointer-events: none; /* Laisse passer le doigt pour cliquer sur EJECT en haut */
+    /* 1. SECTION GLOBALE SCROLLABLE */
+    /* C'est la section qui permet le défilement horizontal. Ainsi, les enfants (cassettes) ne sont JAMAIS coupés par la bibliothèque */
+    #cassette { 
+        display: flex; 
+        flex-direction: column; 
+        height: 100vh; 
+        width: 100vw;
+        overflow-x: auto; 
+        overflow-y: hidden; /* Empêche le site d'être emporté verticalement par erreur */
         -webkit-overflow-scrolling: touch;
+        position: relative;
+    }
+    
+    /* 2. LE LECTEUR (PLASSÉ EN HAUT) */
+    /* order: 1 force le lecteur à s'afficher en haut, même s'il est en 3e dans le HTML */
+    .player-zone { 
+        order: 1;
+        position: sticky; /* Reste scotché à gauche quand on swipe à droite ! */
+        top: 0; 
+        left: 0; 
+        width: 100vw; 
+        height: 45vh; 
+        border-bottom: 2px dashed #444; 
+        background-color: var(--c-bg-panel);
+        z-index: 10; 
+        flex-shrink: 0; /* Garde sa taille */
+    }
+    .lecteur { width: 85%; height: 120px; margin-top: 20px; }
+
+    /* 3. LA BIBLIOTHÈQUE (PLASSÉE EN BAS) */
+    .library {
+        order: 2;
+        display: flex; 
+        flex-direction: row; 
+        width: max-content; /* S'étire pour loger toutes les cassettes en ligne */
+        min-width: 100vw;
+        height: 55vh; 
+        padding: 0 40px;
+        gap: 30px;
+        align-items: center;
+        overflow: visible; /* LA SOLUTION : Aucune coupure quand on glisse la cassette vers le haut */
+        z-index: 20; /* Toujours au-dessus du lecteur pour le Drag&Drop */
+        border-right: none;
     }
 
-    /* 4. CASSETTES : Flex désactivé pour empêcher l'écrasement */
-    .tape {
-        height: 110px !important;
-        width: auto !important;
-        margin: 0 !important; /* Supprime l'empilement */
-        flex: 0 0 auto !important; /* Interdit au navigateur d'écraser l'image */
-        z-index: 10 !important;
-        pointer-events: auto; /* Réactive l'interaction spécifiquement sur l'image */
-        position: relative !important;
+    /* 4. LES CASSETTES EN GALERIE */
+    .tape { 
+        height: 110px; 
+        margin: 0; /* Suppression totale de l'empilement PC */
+        flex: 0 0 auto; /* Interdit l'écrasement des images ! */
+        z-index: 30; 
     }
-
-    /* 5. MODALE : Position absolute pour remonter au scroll naturel du site */
+    
+    /* 5. LA MODALE PARFAITEMENT ANCRÉE */
     .project-modal {
-        position: absolute !important; /* Liée à la section #cassette, elle scrollera avec la page ! */
-        top: 45vh !important; /* S'ouvre sous le lecteur */
-        left: 0 !important;
-        width: 100% !important;
-        height: 55vh !important; /* Remplit le bas de l'écran */
-        padding: 20px !important;
-        overflow-y: auto !important;
-        z-index: 999999 !important; /* Au-dessus de tout */
-        background: rgba(0, 0, 0, 0.98) !important;
-        pointer-events: auto !important; /* Réactive le toucher */
+        order: 3;
+        position: sticky; /* Elle suit l'écran si on scrolle horizontalement, mais descend verticalement avec le site ! */
+        left: 0;
+        width: 100vw;
+        height: 55vh;
+        margin-top: -55vh; /* Elle se tire vers le haut pour venir recouvrir exactement la bibliothèque */
+        padding: 20px;
+        z-index: 999999;
+        overflow-y: auto; 
+        background: rgba(0, 0, 0, 0.98);
     }
-
+    
     .project-modal h2 { font-size: 1.5rem; margin-top: 0; margin-bottom: 10px; }
-    .project-modal iframe { width: 100%; max-width: 100%; height: auto; aspect-ratio: 16/9; margin: 0; }
+    .project-modal iframe { width: 100%; height: auto; aspect-ratio: 16/9; margin: 0; }
     .project-modal p { font-size: 0.9rem; margin-top: 15px; }
 
-    /* 6. MAKING-OFF : Tailles augmentées pour remplir l'écran */
-    .making-off-title { top: 10vh; }
-    .track-slider { height: 80vh; }
-    .track-row img, .track-row video { 
-        height: 35vh; /* Beaucoup plus haut et immersif */
-    }
+    /* 6. MAKING-OFF ÉNORME (40vh) */
+    .making-off-title { top: 8vh; }
+    .track-slider { height: 85vh; }
+    .track-row img, .track-row video { height: 40vh; }
     .infinite-track { gap: 15px; }
-    .slider-btn { width: 45px; height: 45px; margin-top: -22.5px; margin-left: -22.5px; }
+    .slider-btn { width: 40px; height: 40px; margin-top: -20px; margin-left: -20px; }
 }
