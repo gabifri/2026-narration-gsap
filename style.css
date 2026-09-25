@@ -159,6 +159,7 @@ header {
     overflow: hidden;
 }
 
+/* Bibliothèque multi-colonnes avec débordement visible */
 .library {
     width: 50%;
     padding: 80px 20px 50px 20px; 
@@ -170,19 +171,21 @@ header {
     overflow: visible !important; 
     border-right: 2px dashed #444; 
     position: relative;
-    z-index: 999; 
+    z-index: 999; /* Z-index inférieur à la modale */
     box-sizing: border-box; 
 }
 
+/* Les cassettes s'empilent via un margin-top négatif sur Desktop */
 .tape {
     height: 130px;
     cursor: grab;
     position: relative;
     z-index: 10;
-    margin-top: -50px; 
+    margin-top: -50px; /* EMPILEMENT VERTICAL */
     transition: transform 0.2s ease, z-index 0s;
 }
 
+/* Au survol ou pendant le drag, la cassette passe tout au-dessus */
 .tape:hover {
     transform: scale(1.1); 
     z-index: 10000 !important; 
@@ -197,7 +200,7 @@ header {
     gap: 20px; 
     position: relative; 
     overflow: hidden; 
-    z-index: 1; 
+    z-index: 1; /* Indice Z inférieur à la bibliothèque */
     box-sizing: border-box; 
 }
 
@@ -260,7 +263,7 @@ header {
     justify-content: center; 
     pointer-events: none;
     opacity: 0; 
-    z-index: 2000 !important; 
+    z-index: 1000000; 
 }
 
 .project-modal iframe {
@@ -466,18 +469,19 @@ header {
     .header-nav { display: none; } 
 }
 
-/* --- VERSION MOBILE CORRIGÉE --- */
+/* --- VERSION MOBILE 100% OPTIMISÉE --- */
 @media screen and (max-width: 768px) {
     .logo { width: 140px; }
     .header-container { justify-content: center; }
     .slide-img { padding: 80px 20px 20px 20px; object-fit: contain; }
     
-    /* On passe le lecteur en HAUT, la bibliothèque en BAS */
+    /* Le lecteur est en HAUT, la bibliothèque est en BAS */
     #cassette {
         flex-direction: column-reverse; 
+        height: 100vh;
     }
 
-    /* Le lecteur prend la partie haute de l'écran */
+    /* Fixation du lecteur en haut */
     .player-zone {
         width: 100%;
         height: 45vh; 
@@ -485,50 +489,55 @@ header {
     }
 
     .lecteur {
-        width: 85%; /* S'adapte à la largeur du téléphone */
+        width: 85%;
         height: 140px;
     }
 
-    /* La bibliothèque devient une piste de SCROLL HORIZONTAL */
+    /* La bibliothèque devient une simple galerie horizontale scrollable */
     .library {
-        width: 100%;
-        height: 55vh; 
-        padding: 20px;
-        display: flex;
-        flex-direction: row; 
-        flex-wrap: nowrap; /* Force toutes les cassettes sur 1 seule ligne */
-        overflow-x: auto !important; /* Défilement de gauche à droite */
+        width: 100% !important;
+        height: 55vh !important; 
+        padding: 20px !important;
+        display: flex !important;
+        flex-direction: row !important; 
+        flex-wrap: nowrap !important; /* Force la ligne unique */
+        overflow-x: auto !important; /* Autorise le scroll horizontal au doigt */
         overflow-y: hidden !important; 
-        align-items: center;
-        justify-content: flex-start;
-        border-right: none;
-        gap: 30px; 
+        align-items: center !important;
+        justify-content: flex-start !important;
+        border-right: none !important;
+        gap: 30px !important; 
+        -webkit-overflow-scrolling: touch;
     }
 
-    /* Cassettes plus grandes et manipulables */
+    /* Cassettes : fin de l'empilement, galerie propre */
     .tape {
-        height: 120px;
-        margin-top: 0; /* Plus d'empilement vertical puisqu'on scrolle horizontalement */
-        flex-shrink: 0; /* Ne s'écrase pas */
+        height: 110px !important; 
+        width: auto !important;
+        margin: 0 !important; /* Supprime complètement le margin-top négatif sur mobile */
+        flex-shrink: 0 !important; /* Empêche l'écrasement horizontal */
+        position: relative !important;
+        z-index: 10 !important;
     }
 
-    /* La modale se superpose uniquement sur la bibliothèque (la partie basse) */
+    /* Modale : s'affiche uniquement sur la moitié basse (par dessus les cassettes) */
     .project-modal {
-        top: 45vh; /* Démarre exactement sous le lecteur */
-        left: 0;
-        width: 100%;
-        height: 55vh; /* Remplit parfaitement le reste de l'écran */
-        padding: 20px;
-        overflow-y: auto; /* Permet de scroller le texte si besoin */
+        position: fixed !important;
+        top: 45vh !important; /* Sous le lecteur */
+        left: 0 !important;
+        width: 100% !important;
+        height: 55vh !important; 
+        padding: 20px !important;
+        overflow-y: auto !important; /* Permet de scroller le texte long */
         z-index: 999999 !important; 
     }
 
-    /* Optimisation du texte de la modale */
+    /* Optimisation du texte dans la modale mobile */
     .project-modal h2 { font-size: 1.5rem; margin-top: 0; }
     .project-modal iframe { width: 100%; max-width: 100%; height: auto; aspect-ratio: 16/9; margin: 10px 0; }
     .project-modal p { font-size: 0.9rem; margin-bottom: 0; }
 
-    /* Making-off */
+    /* Ajustement Making-off */
     .track-row img, .track-row video { height: 20vh; }
     .slider-btn { width: 40px; height: 40px; margin-top: -20px; margin-left: -20px; }
 }
