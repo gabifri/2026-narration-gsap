@@ -47,7 +47,7 @@ header {
 .point-rouge { color: var(--c-primary); animation: rec-blink 1.5s infinite ease-in-out; }
 
 /* =========================================
-   4. SECTION CASSETTES (PC - BASE)
+   4. SECTION CASSETTES (PC - BASE COMMUNE)
    ========================================= */
 #cassette {
     display: flex;
@@ -55,16 +55,16 @@ header {
     width: 100%;
     height: 100vh;
     background-color: var(--c-bg-panel);
-    position: relative; /* Empêche la modale de flotter en dehors de cette section */
-    overflow: hidden; /* Empêche le site de scroller sur le côté */
+    position: relative; 
+    overflow: hidden; 
 }
 
-/* Modale Ancrée (Ne te suivra plus !) */
+/* Modale ancrée à gauche, ne peut pas flotter ailleurs ! */
 .project-modal {
     position: absolute; 
     top: 0; 
     left: 0; 
-    width: 50%; /* Elle recouvre exactement la partie gauche */
+    width: 50%; /* Recouvre la bibliothèque */
     height: 100%;
     background: rgba(0, 0, 0, 0.95); padding: 40px; box-sizing: border-box;
     display: flex; flex-direction: column; justify-content: center; 
@@ -77,21 +77,21 @@ header {
     width: 50%; height: 100%; padding: 80px 40px 50px 40px; display: flex;
     flex-wrap: wrap; justify-content: center; align-content: flex-start;
     gap: 20px; 
-    overflow: visible; /* OBLIGATOIRE : La cassette ne sera jamais coupée en sortant */
-    position: relative; z-index: 999; /* Z-Index supérieur au lecteur pour passer dessus */
+    overflow: visible; /* Empêche le navigateur de couper la cassette pendant le drag ! */
+    position: relative; z-index: 999;
     border-right: 2px dashed #444; box-sizing: border-box;
 }
 
 /* Cassettes PC (Empilées) */
 .tape {
     height: 130px; cursor: grab; position: relative; z-index: 10;
-    margin-top: -50px; /* L'empilement marche parfaitement ici car il n'y a pas d'overflow auto */
+    margin-top: -50px; /* Empilement exclusif au PC */
     transition: transform 0.2s ease; touch-action: none;
 }
 .library .tape:first-child, .library .tape:nth-child(2) { margin-top: 0; }
 .tape:hover { transform: scale(1.1); z-index: 10000; }
 
-/* Lecteur */
+/* Lecteur PC */
 .player-zone {
     width: 50%; height: 100%; display: flex; flex-direction: column;
     justify-content: center; align-items: center; gap: 20px; position: relative;
@@ -132,80 +132,84 @@ header {
 /* =========================================
    6. RESPONSIVE DESIGN
    ========================================= */
+
 /* Tablette */
 @media screen and (min-width: 769px) and (max-width: 1300px) {
     .tape { height: 100px; margin-top: -30px; } 
     .project-modal iframe { max-width: 450px; }
 }
 
-/* --- MOBILE - LE CODE SOLIDE ET INFAILLIBLE --- */
+/* --- MOBILE - LE CODE EXPERT 100% FIABLE --- */
 @media screen and (max-width: 768px) {
     .logo { width: 140px; }
     .header-container { justify-content: center; }
     .header-nav { display: none; }
     .slide-img { padding: 80px 20px 20px 20px; object-fit: contain; }
     
-    /* 1. SECTION GLOBALE SCROLLABLE */
-    /* C'est la section qui permet le défilement horizontal. Ainsi, les enfants (cassettes) ne sont JAMAIS coupés par la bibliothèque */
+    /* 1. SCROLL HORIZONTAL AU NIVEAU DE LA SECTION */
     #cassette { 
         display: flex; 
-        flex-direction: column; 
+        flex-direction: column; /* Organise naturellement l'écran de haut en bas */
         height: 100vh; 
         width: 100vw;
-        overflow-x: auto; 
-        overflow-y: hidden; /* Empêche le site d'être emporté verticalement par erreur */
+        overflow-x: auto; /* Active le swipe horizontal */
+        overflow-y: hidden; /* Protège des scroll parasites */
         -webkit-overflow-scrolling: touch;
         position: relative;
     }
     
-    /* 2. LE LECTEUR (PLASSÉ EN HAUT) */
-    /* order: 1 force le lecteur à s'afficher en haut, même s'il est en 3e dans le HTML */
+    /* 2. LE LECTEUR : AGRANDI ET COLLÉ EN HAUT (ORDER 1) */
     .player-zone { 
-        order: 1;
-        position: sticky; /* Reste scotché à gauche quand on swipe à droite ! */
-        top: 0; 
+        order: 1; /* S'affiche tout en haut, même si c'est la fin du fichier HTML */
+        position: sticky; /* Reste collé au bord de l'écran pendant le scroll horizontal ! */
         left: 0; 
+        top: 0; 
         width: 100vw; 
-        height: 45vh; 
+        height: 48vh; /* Plus grand ! */
+        flex: 0 0 48vh; /* Garantit que la zone ne sera jamais rétrécie */
         border-bottom: 2px dashed #444; 
         background-color: var(--c-bg-panel);
         z-index: 10; 
-        flex-shrink: 0; /* Garde sa taille */
     }
-    .lecteur { width: 85%; height: 120px; margin-top: 20px; }
+    .lecteur { width: 90%; height: 160px; margin-top: 10px; } /* Agrandit le lecteur sur mobile */
+    .lecteur-text { font-size: 1.1rem; }
 
-    /* 3. LA BIBLIOTHÈQUE (PLASSÉE EN BAS) */
+    /* 3. LA BIBLIOTHÈQUE : LIGNE HORIZONTALE EN BAS (ORDER 2) */
     .library {
         order: 2;
         display: flex; 
         flex-direction: row; 
-        width: max-content; /* S'étire pour loger toutes les cassettes en ligne */
+        align-items: center; /* Centre les cassettes verticalement */
+        width: max-content; /* S'étire infiniment pour aligner toutes les cassettes */
         min-width: 100vw;
-        height: 55vh; 
-        padding: 0 40px;
-        gap: 30px;
-        align-items: center;
-        overflow: visible; /* LA SOLUTION : Aucune coupure quand on glisse la cassette vers le haut */
-        z-index: 20; /* Toujours au-dessus du lecteur pour le Drag&Drop */
+        height: 52vh; 
+        flex: 0 0 52vh;
+        padding: 0 30px;
+        gap: 25px;
+        overflow: visible; /* TRÈS IMPORTANT : Empêche la coupure au Drag ! */
+        z-index: 20; /* Supérieur au lecteur pour glisser les cassettes par-dessus */
         border-right: none;
     }
 
-    /* 4. LES CASSETTES EN GALERIE */
+    /* 4. CASSETTES : VERROUILLÉES (ANTI-ECRASEMENT ET ANTI-EMPILEMENT) */
     .tape { 
-        height: 110px; 
-        margin: 0; /* Suppression totale de l'empilement PC */
-        flex: 0 0 auto; /* Interdit l'écrasement des images ! */
+        height: 120px; 
+        width: 200px; /* Fixe la largeur pour éviter l'effondrement au chargement ! */
+        object-fit: contain;
+        margin: 0; /* Détruit complètement le margin-top du PC */
+        flex: 0 0 200px; /* Interdit formellement au navigateur de compresser l'image */
         z-index: 30; 
     }
     
-    /* 5. LA MODALE PARFAITEMENT ANCRÉE */
+    /* 5. MODALE : PLACÉE EXCLUSIVEMENT SUR LA BIBLIOTHÈQUE (ORDER 3) */
     .project-modal {
         order: 3;
-        position: sticky; /* Elle suit l'écran si on scrolle horizontalement, mais descend verticalement avec le site ! */
+        position: sticky; /* Suit l'écran horizontalement, mais descend avec la page verticalement */
         left: 0;
         width: 100vw;
-        height: 55vh;
-        margin-top: -55vh; /* Elle se tire vers le haut pour venir recouvrir exactement la bibliothèque */
+        height: 52vh; /* Même taille que la bibliothèque */
+        flex: 0 0 52vh;
+        margin-top: -52vh; /* Se superpose par-dessus la bibliothèque, sous le lecteur */
         padding: 20px;
         z-index: 999999;
         overflow-y: auto; 
@@ -213,10 +217,10 @@ header {
     }
     
     .project-modal h2 { font-size: 1.5rem; margin-top: 0; margin-bottom: 10px; }
-    .project-modal iframe { width: 100%; height: auto; aspect-ratio: 16/9; margin: 0; }
+    .project-modal iframe { width: 100%; height: auto; aspect-ratio: 16/9; margin: 0; border-radius: 6px; }
     .project-modal p { font-size: 0.9rem; margin-top: 15px; }
 
-    /* 6. MAKING-OFF ÉNORME (40vh) */
+    /* 6. MAKING-OFF ÉNORME (40vh pour bien voir) */
     .making-off-title { top: 8vh; }
     .track-slider { height: 85vh; }
     .track-row img, .track-row video { height: 40vh; }

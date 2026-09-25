@@ -47,7 +47,7 @@ let currentCassette = null;
 
 Draggable.create(".tape", {
     type: "x,y", 
-    bounds: "#cassette", 
+    // J'AI SUPPRIMÉ 'bounds' : C'est ce qui forçait les cassettes à s'empiler au rechargement sur Mobile !
     
     onDragStart: function() {
         document.querySelector(".lecteur").classList.add("is-glowing");
@@ -107,12 +107,13 @@ Draggable.create(".tape", {
                 gsap.to(playerBg, { opacity: 1, duration: 0.5 });
             }
 
-            // Affichage de la modale sans forcer de positions, le CSS s'en occupe
+            // Affiche la modale en touchant uniquement à l'opacité
             gsap.to(".project-modal", { opacity: 1, pointerEvents: "auto", duration: 0.5 });
             gsap.to(".eject-btn", { opacity: 1, pointerEvents: "auto", duration: 0.3 });
             gsap.to(".lecteur-text", { opacity: 0, duration: 0.3 });
 
         } else {
+            // Si la cassette est lachée en dehors du lecteur, elle retourne sagement à sa place initiale !
             gsap.to(this.target, { x: 0, y: 0, duration: 0.5, ease: "back.out" });
         }
     }
