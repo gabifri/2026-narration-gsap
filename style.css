@@ -167,7 +167,7 @@ header {
     justify-content: center;
     align-content: flex-start;
     gap: 20px;
-    overflow: visible; 
+    overflow: visible !important; 
     border-right: 2px dashed #444; 
     position: relative;
     z-index: 999;
@@ -185,7 +185,7 @@ header {
 
 .tape:hover {
     transform: scale(1.1); 
-    z-index: 10000; 
+    z-index: 10000 !important; 
 }
 
 .player-zone {
@@ -246,8 +246,11 @@ header {
 }
 
 .project-modal {
-    position: fixed;
+    position: absolute;
+    top: 0; 
     left: 0; 
+    width: calc(50% - 2px); 
+    height: 100%;
     margin: 0;
     background: rgba(0, 0, 0, 0.95);
     padding: 40px;
@@ -257,7 +260,7 @@ header {
     justify-content: center; 
     pointer-events: none;
     opacity: 0; 
-    z-index: 999999; 
+    z-index: 2000 !important; 
 }
 
 .project-modal iframe {
@@ -457,84 +460,94 @@ header {
     .header-nav { display: none; } 
 }
 
+
 /* --- VERSION MOBILE 100% CORRIGÉE --- */
 @media screen and (max-width: 768px) {
     .logo { width: 140px; }
     .header-container { justify-content: center; }
     .slide-img { padding: 80px 20px 20px 20px; object-fit: contain; }
     
-    /* 1. SCROLL HORIZONTAL AU NIVEAU GLOBAL */
-    /* La section globale gère le scroll pour éviter les coupures */
+    /* 1. SECTION GLOBALE FIXE : Empêche la coupure des cassettes */
     #cassette {
-        display: flex;
-        flex-direction: column-reverse; 
+        position: relative;
         height: 100vh;
-        overflow-x: auto; 
-        overflow-y: hidden; /* Empêche le scroll vertical indésirable */
-        -webkit-overflow-scrolling: touch;
+        display: block; /* Écrase le flex du desktop */
+        overflow: hidden; /* Garde la section cloisonnée pour ne pas casser le scroll du site */
     }
 
-    /* 2. LE LECTEUR RESTE TOUJOURS VISIBLE (Sticky) */
+    /* 2. LE LECTEUR : Collé proprement en haut */
     .player-zone {
-        position: sticky;
+        position: absolute;
         top: 0;
         left: 0;
-        width: 100vw; /* Strictement la largeur de l'écran */
+        width: 100%;
         height: 45vh; 
-        flex-shrink: 0;
-        z-index: 10;
+        z-index: 10; 
         border-bottom: 2px dashed #444;
         background-color: var(--c-bg-panel);
     }
+
     .lecteur {
         width: 85%;
         height: 140px;
+        margin-top: 60px; /* S'écarte du header */
     }
 
-    /* 3. BIBLIOTHÈQUE ÉTIRABLE SANS COUPURE */
+    /* 3. L'ASTUCE ANTI-COUPURE : La bibliothèque fait 100vh de haut mais on pousse les cassettes en bas via le padding */
     .library {
-        display: flex;
-        flex-direction: row; 
-        flex-wrap: nowrap; 
-        width: max-content; /* S'étire à l'infini selon le nombre de cassettes */
-        height: 55vh; 
-        padding: 20px 40px;
-        align-items: center;
-        gap: 30px; 
-        border-right: none;
-        overflow: visible; /* CRUCIAL : Pas d'overflow ici, donc aucune coupure du drag & drop */
-        z-index: 20;
-    }
-
-    /* 4. CASSETTES : Aucune compression permise */
-    .tape {
-        height: 110px;
-        margin: 0; 
-        flex: 0 0 auto; /* Interdit l'écrasement horizontal */
-        z-index: 10;
-    }
-
-    /* 5. MODALE FIXE SUR LA MOITIÉ BASSE */
-    .project-modal {
-        position: fixed; /* Reste collé à l'écran même pendant le scroll */
-        top: 45vh; 
+        position: absolute;
+        top: 0;
         left: 0;
-        width: 100vw;
-        height: 55vh; 
-        padding: 20px;
-        overflow-y: auto; 
-        z-index: 999999;
-        background: rgba(0, 0, 0, 0.98);
+        width: 100% !important;
+        height: 100vh !important;
+        padding: 50vh 20px 0 20px !important; /* Pousse le contenu vers la moitié basse */
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important; /* Le scroll horizontal se fait ici */
+        overflow-y: hidden !important; 
+        align-items: flex-start !important;
+        gap: 25px !important;
+        z-index: 20 !important; /* Supérieur au lecteur pour attraper la cassette */
+        border-right: none !important;
+        pointer-events: none; /* Laisse passer le doigt pour cliquer sur EJECT en haut */
+        -webkit-overflow-scrolling: touch;
     }
+
+    /* 4. CASSETTES : Flex désactivé pour empêcher l'écrasement */
+    .tape {
+        height: 110px !important;
+        width: auto !important;
+        margin: 0 !important; /* Supprime l'empilement */
+        flex: 0 0 auto !important; /* Interdit au navigateur d'écraser l'image */
+        z-index: 10 !important;
+        pointer-events: auto; /* Réactive l'interaction spécifiquement sur l'image */
+        position: relative !important;
+    }
+
+    /* 5. MODALE : Position absolute pour remonter au scroll naturel du site */
+    .project-modal {
+        position: absolute !important; /* Liée à la section #cassette, elle scrollera avec la page ! */
+        top: 45vh !important; /* S'ouvre sous le lecteur */
+        left: 0 !important;
+        width: 100% !important;
+        height: 55vh !important; /* Remplit le bas de l'écran */
+        padding: 20px !important;
+        overflow-y: auto !important;
+        z-index: 999999 !important; /* Au-dessus de tout */
+        background: rgba(0, 0, 0, 0.98) !important;
+        pointer-events: auto !important; /* Réactive le toucher */
+    }
+
     .project-modal h2 { font-size: 1.5rem; margin-top: 0; margin-bottom: 10px; }
     .project-modal iframe { width: 100%; max-width: 100%; height: auto; aspect-ratio: 16/9; margin: 0; }
     .project-modal p { font-size: 0.9rem; margin-top: 15px; }
 
-    /* 6. MAKING-OFF MIEUX PROPORTIONNÉ */
+    /* 6. MAKING-OFF : Tailles augmentées pour remplir l'écran */
     .making-off-title { top: 10vh; }
-    .track-slider { height: 85vh; }
+    .track-slider { height: 80vh; }
     .track-row img, .track-row video { 
-        height: 32vh; /* Beaucoup plus grand pour remplir l'écran */
+        height: 35vh; /* Beaucoup plus haut et immersif */
     }
     .infinite-track { gap: 15px; }
     .slider-btn { width: 45px; height: 45px; margin-top: -22.5px; margin-left: -22.5px; }
